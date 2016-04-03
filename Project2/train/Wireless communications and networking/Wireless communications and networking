@@ -1,0 +1,533 @@
+Wireless Local Are Networks
+Machine-to-machine communication
+Device-to-device communication
+Multi-Tier Cellular Wireless Networks
+Wireless and Communication Networks
+Offloading in mobile cloudlet systems
+wireless sensor networks
+software-defined networking
+cognitive radio networks
+Smart grid
+Wireless Local Are Networks
+Wireless Personal Area Networks
+Wireless Wide Area Networks
+Wireless mesh networks
+multi-hop
+cellular networks
+wireless communications
+WiMAX
+sensor node
+channel
+multi-channel 
+MIMO
+device-to-device
+D2D
+spectrum resource
+cognitive radio
+Spectrum sensing
+Multimedia Wireless Communications
+Radio Resource Management
+Quality-of-Service (QoS) Provisioning
+Network Performance Analysis
+Content Networking
+Green Network
+Ad Hoc and Mobile Networks
+Overlay Networks
+Wireless Sensor Networks
+Mobile and Pervasive Computing
+Sensor Networks
+Radio Resource Management
+Network Performance Analysis
+Economics Modeling of Wireless Communications and Networking
+Network Security
+Social Media Platform
+cognitive radio networks
+wireless access
+WiFi
+Media access control
+Tier
+Multi-Tier
+fading
+propagation
+jamming
+Fayleigh
+Ethernet Networking
+Network Topology
+Network Addressing
+Wireless Networking
+Encryption
+Authentication
+Adding Wi-Fi 
+Ethernet 
+Transmit
+Medium access control 
+M2M
+D2D
+Ad hoc networks
+Data link
+global positioning system
+multihop
+cellular
+mobile 
+paging systems
+satellite networks
+Ultrawideband Radios
+Wireless Spectrum
+Power Spectral Density
+multiple-input and multiple-output
+Long Term Evolution
+beamforming
+antenna
+orthogonal
+Orthogonal Frequency Division Multiple Access
+OFDMA
+OFDM
+Orthogonal frequency-division multiplexing
+Mobile radio telephone
+Wi-Fi
+Antenna diversity
+Smart Antennas
+multiplexing
+Flat Rayleigh Fading
+wavelength
+frequency
+Code-Division Multiple Access
+CDMA
+Time-Division Multiple Access
+TDMA
+Frequency-Division Multiple Access
+FDMA
+Downlink
+uplink
+ZigBee
+Ethernet
+Ultra Wide Band
+cryptography
+WWAN
+GPS
+Over the last two decades, wireless communications have
+gained enormous popularity. Wireless offers an attractive option
+for many personal as well as organizational communication
+needs because of flexibility, cost effectiveness, and mobility.
+Consider, for example, communication needs of a large
+company; it is estimated that 30 percent of LAN nodes are
+reallocated every year [1]. Wireless communication minimizes
+the cost of cabling and offers flexible installation leading to
+simpler network infrastructure. It requires fewer constraints on
+workplace architecture simplifying floor planning. Availability
+of ready installation made wireless networks a suitable solution
+for static, dynamic as well as temporary demand. Wireless
+provides extensibility options to wired counterparts that have
+reached cabling limits. Moreover, wireless communication
+is naturally suitable for mobile applications. The need for
+wireless communications, thus, cannot be overestimated
+Two transmission techniques for wireless communications
+have been deployed; Radio Frequency (RF) and Infrared. The
+well-established industry experience in radio frequency led to
+quick development of RF-based wireless technologies. The
+RF wireless systems offer a wide range of coverage and a
+host of compatible devices. The popularity of RF wireless
+communications has experienced exponential gain during the
+last decade. On the other hand, the growing demand of
+broadband applications and congestion of RF spectrum have
+fueled interest in the development of the infrared option.
+The use of diffused infrared radiation in wireless communications
+was first proposed in [2]. The then-novel idea has led to
+growing interest in using optical signals in free space and has
+inspired related research and development. The Infrared Data
+Association (IrDA) was an outcome of the increased interest in
+the infrared option [3]. IrDA was founded to establish wireless
+optical standards vis-a-vis to propagate development of new
+optical wireless technologies. As wireless optical evolved, the
+IEEE 802.11 IR standard for wireless LANs was a result of
+realizing the importance of wireless optical.
+Early research in wireless optical was focused on design issues
+related to infrared wireless technologies [1], [4]. As a result,
+six different types of infrared links were proposed based on the
+degree of directionality and Line of Sight (LOS) between the
+transmitter and receiver [5], [6], [7]. The effect of infrared
+radiation on the human eye was recognized as a research
+issue of significant concern and influenced the design of safe
+infrared devices [4], [8]. Performance issues have also caught
+attention of researchers. Power budget, light interference, and
+receiver sensitivity are examples of such issues [9], [10], [11],
+[12]. Advances in performance enhancement research have led
+to novel techniques including hybrid diffused-LOS and hybrid
+infrared-radio systems [13], [14].
+Wireless optical has a lot to offer. It holds the promise of
+increasing the data rate by many orders of magnitude that
+has been validated in experimental laboratory systems [15].
+Optical wireless systems with a data rate comparable to RF
+wireless systems already have been implemented. However,
+real-life indoor systems that realize the Gb/s level data rate
+have not yet seen the light due to cost and other commercial
+issues [11] (i.e. outdoor systems at the Gb/s level are commercially
+available). In a recent guest editorial in the IEEE Communications
+Magazine, it is stated that the current research in
+wireless optical focuses on increasing the bit rate and reducing
+the effect of impairments [16]. This area offers enormous opportunities for basic and applied research and development
+in the near future. In addition, research and development at
+commercial application level is needed. The field is therefore
+in need for a thorough assessment of its current state. This
+motivates us to survey the wireless optical field emphasizing
+major design, performance, and safety issues. We also identify
+research directions that possess the potential to close the gap
+between theory and practice in wireless optical.
+Wireless optical transmission can be classified according to
+the distance between the transmitter and receiver. Accordingly,
+two classes of wireless optical systems called long and short
+distance systems have been recognized. Long distance systems
+are used for outdoor wireless optical. While, short distance
+systems can be applied for both outdoor and indoor environments.
+A long distance system usually connects receivers
+and transmitters that are 100’s of meters apart. An outdoor
+system is mainly used for bridging two different networks. As
+a result, long distance systems must offer a high bit rate, which
+conventionally requires the use of high optical power sources
+such as laser. However, a high power laser can represent a
+hazard to human eyes. Accordingly, transmitters and receivers
+are commonly mounted on buildings roofs or in safe places
+where humans cannot interrupt the beams. Yet, experiments
+have been successful using low power sources in outdoor
+systems leading to eye-safe designs [17].
+Indoor systems are suitable for in-office and in-home LANs.
+An indoor optical wireless network comprises a number of
+cells, every cell commonly has a base station and a group
+of computing hosts. The indoor cells, in this regime, are
+supported by a fast backbone infrastructure where a fiber
+optics transmission is considered a good option. Due to
+technical implications of infrared signals, an indoor wireless
+optical cell is usually confined to a single room. Indoor
+and outdoor wireless optical systems share many design and
+performance issues. However, the atmospheric effect on indoor
+systems is almost non-existent [17]. Outdoor systems have
+a big advantage over indoor systems; the ability to operate
+high power emitters that may present hazards to the human
+eyes and thus cannot be used in indoor systems. High power
+emitters offer tempting data rates. The indoor transmission link
+within a cell is classified according to the degree of directivity
+and the existence of a line of sight between the transmitter
+and the receiver [6], [7]. There are three configurations of
+directionality; directed, hybrid, and non-directed. A directed
+link requires both the transmitter and receiver to be directed.
+On the other hand, line of sight links either exist or do not,
+this leaves only two possibilities; LOS and non-LOS. The
+combination of the two kinds of line of sight links and the three
+degrees of directionality yields six different types of indoor
+optical links. Among the six link forms, optical telepoint, also
+known as Line Of Sight (LOS), and diffused systems are the
+most commonly used. Optical telepoint systems implement
+directed line of sight links, while diffused systems have nondirected
+links with no line of sight. Conventionally, in an
+optical telepoint system, a satellite source (base station) of
+infrared signals is mounted to the ceiling. The base station and
+host terminals must keep line of sight links. The base station
+emits relatively confined beams covering a certain area. In
+diffused systems, a base station is also attached to the ceiling.
+However, there is no line of sight or direction constraints on
+the alignment of the base station and the terminals. In this
+system, a wide angle source emits beams that are allowed to
+reflect off physical objects within the cell. Terminals receivers
+have wide angle that cover the whole plane.
+In general, power efficiency improves as the degree of directionality
+increases and/or line of sight exists because, in both
+cases, the path loss is minimized [18]. Accordingly, optical
+telepoint systems have better power efficiency than diffused
+systems. LOS systems can support higher data rates than
+diffused systems because energy is more confined in optical
+telepoint systems [1]. However, optical telepoint systems are
+more prone to blocking as the transmitter and receiver must
+be able to see each other at all times. Further, maintaining
+precise directions for transmitter and receiver is not trivial.
+On the other hand, diffused systems show more resistance to
+blockage due to the availability of more than one path between
+the transmitter and receiver. Diffused systems provide wider
+area of coverage than optical telepoint leading to a better
+mobility support. Though, mutlipath impairments affect the
+performance of diffused systems.
+Wireless communication has been one of the fastest
+growing industries during the recent years, and wireless
+application, such as personal communication services (PCS),
+cellular communications, satellite communications,
+broadcasting, High-Definition TV (HDTV), Personal Digital
+Assistant (PDA), wireless LAN, Bluetooth, and so on.
+Global System for Mobile (GSM) is a second-generation
+cellular system standard. It is the first cellular system to
+specify digital modulation and network level architectures
+and services. The first significant set of Radio Frequency
+(RF-ICS) for GSM standard started at 1900.GSM was first
+introduced in Europe in 1991 and today it is the most
+common cellular standard.
+At present, GSM system is one of the most popular
+digital cellular telecommunications systems in our country,
+which is widely used in the whole world. With the increase
+of the number and the requirement of GSM subscriber, GSM
+wireless communication system has attracted more and more
+attention in the field of mobile telecommunication.
+GSM System utilizes two bands of 25MHz, 890-915MHz
+and 935-960MHz for the transmit and receive bands of the
+mobile system respectively; It uses FDD (frequency Division
+Duplex) and TDMA (Time Division Multiple Access). The
+receive band is divided into 128channels each with 200 KHz
+bandwidth. Each channel is shared between as many as eight
+users.
+GSM system mainly is made of three parts, Network and
+Switching Subsystem (NNS), Basic Station Subsystem (BSS)
+and Operation Support Subsystem (OSS). Mobile-Services
+Switching Center (MSC) is the heart of the NNS. It can
+finish the basic change function. The conjunction of other net
+can connect with MSC conjunction. BBS is made of basic
+system controller (BSC), basic transceiver system (BTS) and
+mobile system (MS). OOS can manage and monitor whole
+the GSM system. It is made of operation maintenance center
+(OMC) and system software. The growth of the wireless communication market over
+the last decade was characterized by the evolution of
+different standards and the need of low-cost, low power, and
+on-chip integrated third generation (3G) receiver capable of
+adapting to these different standards. The base-band and RF
+front-end sections are required to accommodate different
+wireless standards such as global system for mobile
+communication (GSM). So we tell more about the GSM
+system because it is very hard to understand and very useful
+in our country. The objective of this survey is to investigate
+the feature of the GSM system.The traditional problem faced by mobile radio system
+designers has been how to balance the conflicting
+requirements of area coverage and user capacity. In 1970’s,
+this scenario allowed Bell Mobile systems in New York City
+to support just 12 simultaneous calls. Taking into
+consideration the limited spectrum allocated by government,
+it was a logical evolution step to come up with the cellular
+concept. It implies that instead of having a large area covered
+by single transmitter, that area can be divided it smaller
+coverage areas called cells.
+The cellular concept was a major breakthrough in solving
+the problem of spectral congestion and user capacity. It
+offered very high capacity in a limited spectrum allocation
+without any major technological changer. It is a system level
+idea which calls for replacing a single, high power
+transmitter much low power transmitters. The cellular is one
+of the wireless communication system (WCS).
+WCS have a lot of parts. Base Station is a fixed station in
+a mobile radio system used for radio communication with
+mobile stations. Control Channel is a radio channel used for
+transmission of call setup; call request and other beacon or
+control purposes. Mobile Station is a station in the cellular
+radio service intended for use while in motion at unspecified
+locations Mobile Switching Center which coordinates the
+routing of calls in a large service area. Subscriber is a user
+who pays subscription charges for using a mobile
+communications system. Transceiver is a device capable of
+simultaneously transmitting and receiving radio signals.
+Global system for Mobile (GSM) is a second generation
+cellular system standard that was developed to solve the
+fragmentation problems of the first cellular systems. GSM is
+the world’s first cellular system to specify digital modulation
+and network lever architectures and services. It is now the
+world’s most popular standard for new cellular radio and
+personal communications equipment throughout the world.
+The GSM (Group special mobile) committee took up the task
+of specifying a common Mobile communication system for
+Europe the 900 MHz band. Recently, GSM has changed its
+name to the Global system for Mobile Communications for
+marketing reasons. GSM was first introduced into the
+European market in 1991. By the end of 1993, several won
+European countries in South America, Asia, and Australia
+had adopted GSM and the technically equivalent offshoot
+DCS 1800, which supports personal communication services
+(PCS) in the 1.8 GHz to 2.0 GHz radio hands recently
+created by governments throughout the world.
+In this paper, we present a comprehensive survey on
+complementary code (CC)-based multiple-input multiple-output
+(MIMO) code-division multiple access (CDMA) for futuristic wireless
+communications. This paper starts with the construction of
+CCs and then proceeds to describe the design of CC-based CDMA
+and MIMO wireless communication systems. Complementarycoded
+chip-level space–time coding offers a unique paradigm to
+implement multiuser MIMO systems, opening up a new dimension
+to combine multiple-access and multiple-antenna techniques in a
+unified platform for a possible system design optimization of a
+wireless communication system in the future. In this paper, we
+will also discuss various potential research topics and technical
+challenges that need to be tackled before a complementary-coded
+MIMO CDMA system can be implemented in practical wireless
+applications.
+WIRELESS mobile communication technologies are
+evolving rapidly in order to bridge the gaps between fast
+growing demands for wireless services and limited performance
+provided by current wireless infrastructures. Among various
+technologies related to wireless communications, multiple access
+of the air interface plays a critical role, which determines
+how a common medium is shared amongst users. Therefore,
+the history of mobile communications when the development of
+multiple access techniques, from Frequency Division Multiple
+Access (FDMA), Time Division Multiple Access (TDMA),
+Code Division Multiple Access (CDMA), to Orthogonal Frequency
+Division Multiplexing Access (OFDMA), shows the
+evolutional path of mobile communication systems from the 1st
+generation to the upcoming 4th generation (4G).
+It is indeed an interesting observation that the concept of
+OFDMA is essentially the same as FDMA, which is a way of
+sharing bandwidth amongst users as employed in the very early
+stage of modern communications. Owing to a series of technical
+breakthroughs, such as the use of overlapped spectrum, the
+discrete Fourier transform (DFT), and the cyclic prefix (CP),
+OFDMA has become a dominant and popular multiple access
+technique in the 4G wireless communications. However, it has
+to be admitted that OFDMA suffers from serious drawbacks,
+including its sensitivity to peak-to-average power ratio (PAPR)
+[1] and its performance degradation under carrier frequency
+offset (CFO) and multi-path effects [2]. Particularly, a CP has
+to be used in every OFDM symbol to avoid Inter Symbol
+Interference (ISI) caused by multi-path propagation, which
+consumes additional (about 25%, which is not trivial) channel
+resource with a reduced spectral efficiency.
+We also observe that code division multiple access, proposed
+as a robust technology for 2G and 3G mobile cellular standards,
+has its unique ways to mitigate many interference problems otherwise
+impossible to use relatively simple techniques, such as
+RAKE receiver, etc. Unfortunately, CDMA was not selected as
+a main-stream multiple access technology for the 4G wireless
+communications, but it remains to be a very strong candidate
+for the futuristic wireless applications. In this paper, we are
+going to revisit the research efforts made in the process of
+CDMA technology development to see if it can come back as
+a primary multiple access technology in the future. If yes, what
+innovations we should make for it.
+In fact, from the narrowband 2G CDMA technique to the
+wideband 3G CDMA technique, the core technologies of
+CDMA systems are very similar. We do not see any significant
+progress made in the evolution of CDMA technologies from
+2G to 3G, and the latter was improved only in its capacity and
+coverage with an enhanced flexibility in supporting multimedia
+services. It is well known that all existing CDMA based 2–3G
+standards are still interference-limited. It has to be admitted
+that an immediate cause for this is the undesirable properties
+of the spreading sequences they used: the non-zero sidelobes
+of auto-correlation functions will result in severe multi-path
+interference (MPI) and the non-zero values of cross-correlation
+functions will result in serious multiple access interference
+(MAI).
+On the other hand, the poor performance of the current
+CDMA systems has also something to do with their spreading
+codes that were designed without considering the effects of
+practical communication channels. The design of spreading
+codes for CDMA applications is a traditional research topic,
+and many candidate codes were found in the literature in the 60s
+and earlier. However, they were generated and applied to systems
+only based on the knowledge of seemly acceptable properties
+in their periodic auto- and cross-correlation functions.
+Due to the use of this code design approach, which ignored
+real application scenarios in wireless systems (e.g., uplink
+asynchronous transmissions, varying signs in bit stream, and
+MPI), a great deal of auxiliary sub-systems or techniques have
+to be employed in all current CDMA applications, such as
+power control and multi-user detection (just as two examples),
+to mitigate the problems associated with the spreading codes,
+such as near-far effect, MAI, and MPI.
+In order to bring CDMA back on track via the innovation
+of CDMA technologies, a possible solution was proposed with
+the help of a new spreading code design methodology based
+on complementary codes (CCs) [3]–[5]. The advantages of
+complementary coded CDMA (CC-CDMA) mainly lie in the
+fact as stated below.
+Different from all traditional spreading sequences, the
+orthogonality of CCs is established based on a “flock”
+of element sequences jointly. As a result, ideal autoand
+cross-correlation properties are realizable at the same
+time, while it never happens for any traditional spread
+sequences as proved by the Welch bound [6] and Sarwate
+bound [7].
+2) The design approach of CCs takes into account various
+implementation constraints of a practical CDMA system,
+such as MPI, asynchronous transmission, different signs
+of consecutive bits in data stream, and so on. Thus,
+a CC-CDMA system can significantly outperform any
+traditional CDMA system, especially in asynchronous
+multi-path and multi-user scenarios.
+3) Multiple Input Multiple Output (MIMO) techniques can
+be integrated in a CC-CDMA system with three dimensional
+complementary codes (3DCCs). This is a brand
+new attempt to implement a unified wireless communication
+platform with integrated multi-user and multiantenna
+techniques for better system optimization in the
+future (this remains to be a widely open issue, worthy
+making a lot of fresh research efforts).
+In this paper, we present a comprehensive survey based
+on the existing literature in the area of CC-CDMA wireless
+communications to provide an overview on the state-of-theart
+research in the field. Our motivation for such an overview
+is threefold. First, CC-CDMA wireless communication is a
+promising technique to innovate existing mobile communication
+systems to meet the growing demands. It is characterized
+by not only a new code structure but also a new design philosophy
+of spreading or signature codes for CDMA applications.
+Second, to the best of our knowledge, a thorough survey on
+CCs or CC-CDMA wireless communications is not available
+in the literature, although the initial idea of CCs can be traced
+back to as early as 1949. Finally, complementary coded wireless
+communication is still far from mature, although many major
+theoretical investigations have been made and reported. Hence,
+we would like also to discuss about the technical challenges for
+its implementation.
+The remainder of this paper is outlined as follows. Section II
+gives a history briefing on CCs. Section III introduces different
+types of CCs for CDMA applications, and the architectures
+of CC-CDMA systems are also classified and discussed.
+Section IV takes a look at complementary coded MIMO CDMA
+systems as a new multi-user MIMO paradigm. Section V discusses
+the future works left over for the further investigations,
+followed by Section VI that concludes the paper 
+WIRELESS networks have seen tremendous growth to
+support Quality of Service (QoS) and Quality of Expectation
+(QoE) requirements of diverse applications with increasing
+number of users. To cope with these requirements, various
+wireless standards have been proposed, ranging from technologies
+characterized by networks for few User Equipments
+(UEs) with small coverage area (e.g. bluetooth) to networks
+with larger coverage and hundreds of users (e.g. LTE). These
+technologies are diverse in nature and coexist in the same environment to provide ubiquitous network coverage. With the
+increased drive from the industry for a fully connected network,
+there is also a need to design heterogeneous wireless network
+(HetNet) architecture to interconnect these different wireless
+networks [1]–[5], where UEs can connect to any available
+wireless network depending on their requirements. Such an
+over development of wireless technologies using static resource
+allocation techniques can result in spectrum scarcity and low
+Spectrum Efficiency (SE) [6]. Dynamic radio resource allocation
+and Cognitive Radio (CR) based algorithms can then be
+used to enhance SE and Energy Efficiency (EE) of the system
+[7]–[11].
+According to some estimates, the global information communications
+technology (ICT) ecosystem consumes around 1100
+to 1800 Terawatt-hours of electricity annually, which is roughly
+equal to the electricity used by Germany and Japan combined
+[12]. Worldwide telecommunication networks (which include
+wire-line, wireless and core networks) are responsible for more
+than one third of this energy consumption due to increased
+coverage and user subscriptions. For example, in UK a typical
+mobile phone operator may consume approximately 40 MW,
+excluding the power consumed by the user’s handsets [13]. In
+several countries, direct access to electricity is not available
+at each and every cell site and hence diesel generators (direct
+source of CO2 emissions) are used to power the Base Stations
+(BSs). It should also be noted that BSs consume almost 60%
+of the total power consumption of a typical mobile network
+[14]. Furthermore, the data traffic volume of mobile broadband
+networks is expected to increase by 89 times in the year
+2020 as compared to the traffic volumes in 2010 [15]. The
+movement of this data from core network to user handset will
+also demand significant amount of energy. For example, to
+deliver an hour of video on weekly basis to a smartphone for
+one year will consume more power than the combined annual
+power consumption of two household refrigerators [12]. To
+meet these challenges, green evolution is becoming an urgent
+need for wireless networks. It should be noted that the word
+‘Green’ has been coined to focus on reducing CO2 emission and
+energy efficient systems are considered as green as long as they
+introduce less gas emissions. A study by GreenTouch indicates
+that despite the data traffic growth in the next decade, wireless
+networks can be made Green by reducing their overall energy
+consumption by almost 90% in the year 2020 with significant
+economic and environmental impact [15]. This green evolution
+for energy-efficient communication, which can be possible
+through re-engineering communication system for long-term

@@ -1,0 +1,539 @@
+animation
+gaming
+3D animation
+image processing
+Computer Vision
+Multimedia
+Ontology support for Multimedia Semantic Web
+Visualization
+Animation and Visualization
+Pixel 
+Polygon
+OpenGL
+2D
+Transformation
+Backface
+Lighting
+Reflection
+Texture
+Cylinders
+render
+Morphing
+Anti-aliasing
+3DStudio
+LightWave3D
+Bump Mapping
+Multi-rendering
+Shadow
+Curve
+Surface
+Lighting
+Shading
+Clipping
+Occlusion
+Display
+Rasterization
+Ambient Lighting
+frame
+triangle
+Spherical
+Bounding
+blending
+Transparency
+opaque
+Anti-aliasing
+resolution
+ dimensional
+ aliasing
+ Antialiasing
+ flickering
+ Geometric
+ Polygon
+ Rendering
+ Projection
+ rasterization
+ ray-tracing
+ Photometry
+ visualization
+ Blender
+Ray tracing
+3D projection
+geometric
+cartoon
+rendering
+three dimensional
+three dimension
+To better understand the interrelationship of
+computer graphics and computer vision, we’ll
+showcase a representative set of papers that meld
+these two disciplines. We drew from papers
+accepted at the Siggraph 99 conference in Los
+Angeles. From the conference we see that a significant
+number of researchers in computer graphics
+are drawing inspiration from computer vision.
+An outstanding example of such work presented
+at Siggraph 99 was the research paper “A
+Morphable Model for the Synthesis of 3D Faces.”2
+A technique for modeling textured 3D faces,
+Morphable Faces begins by morphing a collection
+of photographed faces to produce a model of “the
+average face” in three dimensions. Given a new
+target photograph, the author’s technique orients
+and scales this average face to approximate the
+photographed image’s position. At this stage, an
+optimization algorithm attempts to perturb the
+3D model until it looks like the photograph. The
+authors accomplish this effectively using their
+own novel routines. Once the model exists in
+three dimensions, you can apply the range of
+computer graphics techniques to shade, texture
+map, morph, and so on.
+The authors presented impressive results
+including the reconstruction of believable, texturemapped
+3D faces of Tom Hanks and Audrey Hepburn
+from single frames of film. Using this
+method, we can reconstruct a probable facial representation of the “Mona Lisa,” viewable from
+multiple angles (see Figure 2). This work also
+demonstrates face manipulations according to
+complex parameters such as gender, fullness of a
+face, or distinctiveness.
+Adding research from a second paper, “Voice
+Puppetry,”3 we can begin to envision myriad applications
+wherein the “Mona Lisa” instructs visitors
+on her genesis, history, and creator (see Figure 3).
+Movie postproduction can edit and replace sound
+tracks without requiring the presence of actors.
+Educators can use animated historical figures or
+fictional characters to teach material (see Figure 4).
+Such near-horizon applications will breathe new
+life into the concept of virtual actors. In the Voice
+Puppetry work, 2D reference video frames and
+sound are used to train a 3D model to exhibit
+facial expressiveness including mouth and eyebrow
+animation. A new voice track can then trigger
+the model’s learned expressive behavior.
+You can just see a little peep of the passage in
+Looking-Glass House, if you leave the door of our
+passage as far as you can see, only you know it may
+be quite different on beyond 
+Current graphical user interfaces (GUIs) and
+other computer interfaces have emerged as a side
+effect to the advent of desktop computing. However,
+we now have a powerful new toolbox at our
+disposal, together with a new generation of users
+whose experiences with ubiquitous computing
+will push the interface to the next level. For
+example, the synthesis of much current work in
+computer graphics and computer vision brings us
+closer to realizing the intelligent interfaces seen in
+popular science fiction—often the portent of
+future trends.
+Wearable, camera based, head–tracking systems use
+spatial image registration algorithms to align images
+taken as the wearer gazes around their environment.
+This allows for computer–generated information to appear
+to the user as though it was anchored in the real
+world. Often, these algorithms require creation of a multiscale
+Gaussian pyramid or repetitive re–projection of
+the images. Such operations, however, can be computationally
+expensive, and such head–tracking algorithms
+are desired to run in real–time on a body borne computer.
+In this paper, we present a method of using the
+3D computer graphics hardware that is available in a
+typical wearable computer to accelerate the repetitive
+image projections required in many computer vision algorithms.
+We apply this “graphics for vision” technique
+to a wearable camera based head–tracking algorithm,
+implemented on a wearable computer with 3D graphics
+hardware. We perform an analysis of the acceleration
+achieved by applying graphics hardware to computer vision
+to create a Mediated Reality.
+Motion estimation and image registration algorithms
+often use repetitive or iterative schemes to determine
+motion between images. At each iteration or repetition,
+such algorithms often require the image to be warped,
+and this warped image is then used as the input to
+the next stage of processing. Additionally, multi-scale
+Gaussian pyramids may need to be created, and image
+filtering and down sampling may be required. Since
+the image warp will typically not result in pixels being
+mapped exactly to other pixel locations, some methods
+of interpolation are required. The process of image
+warping can often be computationally intensive, and accurate
+filtering and interpolation techniques add to the
+computational complexity of the image warp. Many vision algorithms, however, are desired to run in real–time,
+and the time spent re–warping and filtering the images
+can make up a large portion of the calculations required
+on each frame. Many current graphics cards incorporate a great deal
+of hardware specifically designed to achieve extremely
+fast real–time rendering of texture mapped polygons.
+Additionally, high–end graphics cards incorporate hardware
+designed for filtering and pixel interpolation to create
+accurate texture maps. Many modern graphics cards
+are capable of hardware bilinear filtering and anisotropic
+filtering (though the specification of anisotropic filtering
+varies greatly between different graphics cards). The
+process of displaying a texturemapped polygon is essentially
+the same as applying a projective coordinate transformation
+to an image. This suggests that it is possible
+to utilize the hardware of modern graphics cards to apply
+a projective coordinate transformation in hardware,
+rather than doing so in software. In particular, graphics
+cards are tuned to create perspective projections of
+planar surfaces. When an image is texture mapped onto
+this planar surface, the graphics hardware will project
+the image onto the surface, which is a type of image
+warping (under projection).
+In order to achieve fast, real–time computer vision
+algorithms, specialized hardware has, in the past, been
+used. In [4], a general purpose array of FPGAs was used
+to achieve face recognition at camera frame rates. While
+similar hardware could be developed for image warping,
+such hardware is already incorporated into modern
+graphics cards. It is thus possible to use existing, low
+cost and easily available graphics cards to realize hardware
+acceleration. In this way, computer graphics hardware,
+which is most commonly used to project computer
+generated information into an image (image synthesis),
+is rather being used for the purpose of accelerating a
+computer vision algorithm (image analysis).
+The VideoOrbits algorithm [7] considers transformations
+of planar patches as seen by a camera free to pan,
+tilt, and rotate about its optical axis. VideoOrbits is well
+suited for applying OpenGL video acceleration because
+VideoOrbits is a repetitive multiscale algorithm. Figure
+1 shows the VideoOrbits algorithm. The steps of the
+algorithm which can be accelerated with graphics hardware
+are outlined in bold. From the figure, it can be seen
+that at each repetition, VideoOrbits attempts to estimate
+eight parameters of a projective coordinate transformation
+to spatially register two images. Then, VideoOrbits
+projects one image accordingly. This projected image
+is then used as an input to the next repetition of the algorithm.
+The projective coordinate transformation used
+in VideoOrbits maps straight lines to straight lines at all
+times, and thus represents a subset of all possible image
+warps. Thus we refer to image warping in VideoOrbits
+as projection rather than the more general term of image
+warping. In OpenGL, this is achieved by the viewing of
+a plane from different camera angles. In fact, the projective
+parameters calculated by VideoOrbits can be used
+as a camera transformation in OpenGL.
+Figure 2 demonstrates VideoOrbits image processing.
+The top row of images shows the original images
+taken by a camera looking about a static scene. The
+second row of images shows each of the original images
+projected to spatially align with the leftmost image.
+These images are demonstrate the operations carried
+out in the highlighted algorithmic steps of figure 1.
+Additionally, the images have been comparametrically
+processed [6] to set their exposures equivalently. Note
+from the shape of the images that after the VideoOrbits
+projection, the images appear as projected quadrilaterals.
+In OpenGL, each of the images is a texture mapped
+plane, viewed at the appropriate angle. After each of the
+images has been properly projected, they can each be
+composited into a single image composite. The image in
+the third row shows the result of compositing the mulitple
+images of different exposure. This final image is
+thus of large spatial extent. Furthermore, comparametric
+statistical methods have also been applied to create
+an image of greater dynamic range than any of the original
+images. The statistical image enhancement methods
+applied to these images required floating pointing accuracy,
+which is effortlessly accomodated by OpenGL
+since OpenGL and graphics hardware can work natively
+with floating point representations of textures.
+VideoOrbits has applications for performing camera
+based head tracking to create a wearable, tetherless mediated
+reality [5]. Essentially, the motion of a user’s
+head as they look around a scene is very similar to the
+motion of a camera panning, rotating, and tilting about
+its optical axis. This is to say that motion of the camera
+is induced by motion of the head. VideoOrbits is
+well particularly suited to describe this prevalent motion
+in a camera based head tracking system. This is
+especially useful in Mediated Reality applications to
+make computer–generated information appear as though it was affixed to the real world scene as viewed through
+an HMD or EyeTap [5] devices.
+VideoOrbits camera based headtracking has been implemented
+on a high–end server computer and runs at
+11 frames per second. However, even faster processing
+is desirable for more accurate head–tracking, and often,
+wearable computers do not have as much computational
+power as their desktop counterparts. Currently the algorithm
+can lose tracking when large motions occur (such
+as the user moving their head quickly). Faster tracking
+causes large head motion to be captured by more frames,
+thus in each pair of frames, the motion appears smaller.
+This in turn results in greater accuracy for the VideoOrbits
+algorithm. Furthermore, by accelerating the image
+projection, more repetitions of the algorithm can be performed
+on each subsequent image, which in turn yields
+greater accuracy as well.
+To investigate the effect of graphics hardware acceleration,
+the OpenGL program was designed to accept
+projective parameters from the VideoOrbits algorithm,
+allowing the OpenGL program to be used with VideoOrbits.
+In this investigation, the speedup achieved with
+graphics hardware was examined. This was done by
+comparing the speed of the software image projection
+algorithm to the OpenGL image projection program.
+In OpenGL, the most straightforward way of applying
+the projective coordinate transformation of VideoOrbits
+is to consider it to be a transformation to be applied
+to the projection matrix used in OpenGL.
+The operation of applying a projective coordinate
+transformation to an image is homomorphic 1 to the
+process of projecting a texture mapped polygon under
+perspective projection in OpenGL. Thus, hardware acceleration
+of VideoOrbits projective transformations can
+be achieved by defining an homomorphism between the
+projective space of VideoOrbits and the projective space
+and homogeneous coordinate system of OpenGL. An
+homomorphism  is defined by a mapping of VideoOrbits
+projective transformations G to OpenGL projection
+matricesM: Maya is thought as the strongest 3D developing
+software,especially the complicated scene,which inheritted the
+characteristics of extendibility and adjustability. In the paper,
+the film 3D animation design based on Maya is proposed. The
+detailed creating process of animation by maya are
+described,which includes five stages of modelling,
+material,map design, light and camera,animation. The cartoon
+“Hero Laura” is applied as the experimental object to study
+the performance of 3D animation design by Maya and the
+design process of the cartoon “Hero Laura” is given in the
+study. The key design steps of the cartoon “Hero Laura”
+include modelling, person skeleton frame and animation
+design. According to the design steps of the cartoon “Hero
+Laura”,the animation “Hero Laura” is designed.The
+experimental effects indicate that the 3D animation design by
+Maya is effective. Maya is the 3D developing tool which the Adobe
+company produces, including the majority function of 3D
+animation design[1]. Generally,Maya is thought as the
+strongest 3D developing software,especially the
+complicated scene.Maya has the distinct difference from the
+other 3D software,which inheritted the characteristics of
+extendibility and adjustability[2-5].In the paper, the film 3D
+animation design based on Maya is proposed.The design
+process of animation by maya includes five stages,which
+are modelling, material,map design, light and
+camera,animation.These stages describe the main task
+which needs to establish an animation.The almost attributes
+of any object in Maya can create an animation, animation
+creation process can start in any time,and after establishing
+a good scene and creating the animation, these 3D object
+can be exaggerated and combined, and combine it to a
+two-dimensional diagram space[6-8].The detailed creating
+process of animation by maya are described in the paper.
+The cartoon “Hero Laura” is applied as the experimental
+object to study the performance of 3D animation design by
+Maya. The design process of the cartoon “Hero Laura” is
+given in the study. The design steps of the cartoon “Hero
+Laura” are described here.Firstly, perform the play design
+and action design.Then, create scene, prop model and
+person model according to the need of play. And complete
+the action design of person and scene decorating. In the study, genetic algorithm is adopted to optimize continuous
+actions of the human body skeleton. Genetic algorithm has
+strong global optimization capability. After a series of
+iterative computations, genetic algorithm can obtain the
+optimal solution. Finally, the camera lens are created and
+the sequence picture is exaggerated. The key design steps of
+the cartoon “Hero Laura” include modelling, person
+skeleton frame and animation design,which is described in
+the paper. According to the design steps of the cartoon
+“Hero Laura”,the animation “Hero Laura” is designed.The
+design effect by Maya is satisfactory.It can be indicated that
+the 3D animation design by Maya is effective. Maya is the 3D developing tool that the Adobe company
+produces, including the majority function of 3D animation
+design. Maya is thought as the strongest 3D developing
+software,especially the complicated scene.Maya has the
+distinct difference from the other 3D software. Firstly, Maya
+inheritted the characteristics of excellent software of all
+work station classes of alias,which has extendibility and
+adjustability. Maya not only has already been more similar
+than 3D software,such as 3DMAX.
+Maya has good performance in the light and
+material,etc..In Maya ,the adjustable parameter is more
+outstanding.The parameters of camera are getting more
+professional. The constitutions are computed by software,
+and the exaggerating accuracy can attain movie class. The
+animation usually works at the different section of the
+process at the same time, there is a few stage,such as
+modelling, role and effect to create animations in the
+creating animation of Maya.Generally, animation creation
+process can start in any time , the almost attributes of any
+object in Maya can create an animation.The creating process of animation by maya includes five
+stages,which are modelling, material,map design, light and
+camera,animation,which is shown in Fig.1.These stages
+describe the main task which needs to establish an
+animation.For a project, it usually works at the different
+section of the process at the same time.There is a good idea
+that let the work sets create together. In the creating
+animation of Maya, there is a few stage,such as modelling, role and effect to create animations.As the almost attributes
+of any object in Maya can create an animation, animation
+creation process can start in any time.After establishing a
+good scene and creating the animation, these 3D object can
+be exaggerated and combined, and combine it to a
+two-dimensional diagram space. In the end of the process,
+the exaggerating and synthesizing phase become the system,
+and the exaggerating can be used at the whole creation
+animation stage.The detailed creating process of animation
+by maya is shown as followings:
+The modelling can mainly include the establishment of
+animation scene, the establishment of animation shape and
+the establishment of animation prop.The modelling is the
+foundation of Maya animation creation. As the arrangement
+line of animation model must be reasonable and even,
+namely the distance of line and line should be long, line and line should be parallel, all of the model in Maya is
+composed of dot, line, surface. Moreover, the proportion of
+model should match reality.
+In the computer world, the material can reflect a real
+world, it is full of magic power. We have to observe
+surroundings environment according to the material type,
+model of animation.The picture design has a most challenge in the process of
+the whole animation creation, which is also make us acquire
+the sense of achievement easily. We gain the original UV
+coordinate of an object from Maya, then draw in the
+software in Photoshop.In the process of creating the map,
+the surface characteristic and detail should be described in
+detail as far as possible.We can make an animation when the front works make
+well.The essence of the animation is the change of
+action.The foundation of animation is the combination of
+position and time. We can make use of numerous elements
+to create an animation in the animation creation of Maya.
+The animation speed must be noticed in the process of
+completing a action in the animation.Moreover,
+exaggeration and personification are the common art skills
+which are used in the animations, the animation designer
+wants to observe that the action in the real life is how to
+take place and simplify an animation. Teachers need to develop alternative teaching
+approaches and innovative learning for effective math education.
+Consequently, the purpose of this study is to examine the
+effectiveness of 2D and 3D animation in improvement of
+mathematics education among first-grade students, also compare
+between 2D and 3D animation. The experimental study conducted
+in a primary schools in Jordan. The researcher conducted teaching
+via animation with two different groups of students (i) first group
+(N=57) taught by using 2D animation (ii) another group (N=57) was
+taught the same lesson by using 3D animation. Pre-test and posttest
+were done before and after learning process. The results show
+there was a significant difference between the mean pre-test (8.93
+± 3.723) and post-test (13.77±3.766) in the 3D animation group and
+the mean pretest (8.40± 3.400) and post-test (10.73 ±3.34) in the 2D
+animation group. Consequently, using 3D animation in teaching is
+better than 2D animation. Nowadays competency in mathematics has become
+an important skill for every person[1]. Learning basic math
+skills is the foundation for passing higher levels of math [1].
+Failure to understand basic math knowledge will affect the
+student’s ability to achieve math skills at the highest level;
+this failure will also affect students’ self-confidence and
+their interest in learning new math skills [2]. Students are
+exposed to basic mathematics skills and knowledge as early
+as primary school. This stage is vital in learning
+mathematics up to the highest level [3]. A strong base in
+mathematical skills will ensure smooth mathematics learning
+[3]. Numerous factors have contributed to poor student
+performance in mathematics, including ineffective teaching
+methods [4, 5], a lack of interest in math [6] and a deficiency
+of suitable instructional materials for teaching math at all
+levels of education [7]. Moreover, there have been many studies done to
+examine the reasons for low achievement in mathematics
+among primary students. They found the most common reason
+to be the method of teaching the subject [8-10]. In addition
+Saritas & Akdemir (2013) studied the factors that impact the
+mathematical achievement of primary students and they
+reported that instructional design for math courses is very
+important and must be compatible with the factors that have
+been identified for math achievement [11].
+Teachers need to create and develop alternative teaching
+approaches and innovative learning for effective math
+education. Consequently, advanced technology and
+information have certainly played a role in the relationship
+between information and learning [12]. Nowadays, learning
+through new multimedia technology such as animation seems
+to be an attractive teaching method [13, 14]. Many researchers
+have used 2D and 3D animation as a teaching approach in
+school settings and for special courses such as math [13, 14].
+The purpose of this study is to examine the effectiveness of
+2D and 3D animation in improvement of mathematics
+education among first-grade students, also compare between
+2D and 3D animation in improvement of mathematics
+education among first-grade students. There are two independent variables were in this study;
+the first one is the type of animation technology (2D, 3D
+animation), and the second one is the students’ degree of prior
+knowledge Prior knowledge in this study means the old
+knowledge which has been stored in the students’ minds and
+which the students can recall at any time. Prior knowledge
+evaluated by using the pre-test. The dependent variable in this
+study is newly acquired understanding of the presented
+knowledge using the animation teaching method. The variable
+defined as the improvement in level of mathematical skill.
+The improvement in mathematics skill level determined
+by the post-test. The post-test designed to cover each objective
+in this study. The researcher compared the mean for all posttest
+average scores of first-grade students who study math
+using 2D animation and 3D animation. Also, the researcher
+compared the mean for average score between pre-test scores
+and post-test scores for both groups. Therefore, the posttest
+scores was a dependent variable. c OMPUTER-AIDED design is made possible by a
+close interaction between the man and thec omputer.
+Ths interaction is carried out through the use of
+special languages, displays, light pens, keyboards, and other
+specialized input-output techniques [43]. Man-computer
+graphics is an important aspect of computer-aided design
+which is based on the use of an interactive visual display.
+Through use of a computer-driven display and light pen or
+other input device the man is able to interact graphically
+with the computer. That is, he can draw pictures on the
+display and these pictures are “understood” by the computer.
+For example, the computeris able to measure lengths,
+areas, and other values derivable from the geometric relations
+drawn on the display and perform calculations based
+on them using pre-stored programs; In this manner, the
+computer can rapidly analyze a design postulated by the
+man and present the results back to him for revision or
+approval. This mancomputer synergism is expected to
+significantly enhance the productivity and the creativity of
+the individual [5], [34], [58], [82]. Graphical communication with the computer is illustrated
+by Fig. 1, which shows a display and light pen interconnected
+to a digital computer. Points, straight-line segments,
+and curves composed of these segments can be painted on
+the display by computer command. As shown, a small
+“tracking cross” is being displayed which is formed by two
+sequences of points. The light pen is actually a receptor’of
+light; it consists of a fiber-optic bundle which terminates in a
+photomultiplier tube; a simple shutter is opened when the
+button on the pen is depressed. When any portion of the
+tracking cross is within the field of view of the light pen,
+pulses are generated by the photomultiplier tube as the
+individual points are painted. These pulses, which are received
+and interpreted by the computer, indicate which
+portion of the tracking cross is “seen” by the light pen.
+Based on ths information, the computer repositions the
+tracking cross so that it is centered within the field of view
+of the light pen on the next “paint.” In this manner the
+tracking cross will follow the light pen to any position on
+the screen. The coordinates of the tracking cross are continuously
+known by the computer and can be selected for
+use at any time by pressing a switch. In this way the operator
+specifies the endpointso f linesa nd thel ocations of other
+construction elements to the computer. In addition to selecting point locations by means of the
+tracking cross, the light pen can be used in another interesting
+mode of operation known as the pickfunction [3], [48].
+After a figure has been drawn by the operator, or is generated
+on the basis of computed data, the operator may
+desire to select a particular curve, component, line of text,
+or other distinct element which is a part of the picture. He
+may do thsm erely by pointing the light pen at the element
+and pressing an “accept” button. The light pen photomultiplier
+produces a pulse at the instant the selected element
+is painted, which signals the computer. Since the address
+of the element being painted is known by the computer,
+its identification can be used as directed by the program.
+For example, the element may be erased, moved,
+duplicated, or rotated. By proper programming, symbols or
+labels on the screen can be made light-pen sensitive and
+can be selected by pick function. This operation may be
+used to select a single option from a list or “menu” of
+alternatives presented on the display

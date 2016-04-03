@@ -1,0 +1,500 @@
+Assignment problem
+Black box analysis
+Decision analysis
+Dynamic programming
+Inventory theory
+Linear programming
+Mathematical optimization
+Optimal maintenance
+Queueing theory
+Real options analysis
+Stochastic processes
+Systems analysis
+Systems thinking
+Stochastic programming
+Mixed Integer programming
+Markov decision process
+Markov chain
+Game theory
+Graph theory
+Convex optimization 
+Evolutionary Optimization
+Optimization
+simplex
+dual
+interior-point
+goal programming
+concave
+convexity
+Branch-and-cut
+AMPL
+Binary integer programming
+mixed integer programming
+M/M/s
+Queueing
+Chapman-Kolmogorov
+CPLEX
+primal-dual
+equilibrium
+nonlinear programming
+dynamic programming
+Multi-objective optimization
+Multi-modal optimization
+Second order cone programming
+Semidefinite programming 
+Conic programming
+Geometric programming 
+Fractional programming
+Quadratic programming
+Robust programming 
+Combinatorial optimization 
+Infinite-dimensional optimization 
+heuristics
+metaheuristics
+Constraint programming
+optimization
+memetic 
+differential evolution
+particle swarm optimization
+bee colony
+ant colony
+tabu search
+simulated annealing
+Combinatorial optimization
+swarm intelligence
+Evolutionary Algorithm
+Genetic Algorithm
+duality
+MULTIVARIABLE
+Constrained Optimization
+Nonlinear Lagrangian
+Bilevel
+Combinatorial Optimization
+Stochastic programming
+conic
+nonconvex
+non-convex
+cone
+duality
+dual
+primal
+Bi-level
+Convex optimization can be described as a fusion
+of three disciplines: optimization [221, [ZO], [I], [31,
+[4], convex analysis [19], [24], 1271, [16], [13], and
+numerical computation [26], [U],[I O], [17]. It has
+recently become a tool of central importance in engineering,
+enabling the solution of very large, practical
+engineering problems reliably and efficiently. In some
+sense, convex optimization is providing new indispensable
+computational tools today, which naturally extend
+our ability to solve problems such as least squares and
+linear programming to a much larger and richer class of
+problems.
+Our ability to solve these new types of problems
+comes from recent breakthroughs in algorithms for solving
+convex optimization problems [181, [231, [291, 1301,
+coupled with the dramatic improvements in computing
+power, both of which have happened only in the past
+decade or so. Today, new applications of convex optimization
+are constantly being reported from almost
+every area of engineering, including: control, signal
+processing, networks, circuit design, communication, information
+theory, computer science, operations research,
+economics, statistics, structural design. See [71, [21, [SI,
+[61, [91, [I I], [15], [SI, [ZI], [14], [28] and the references
+therein.
+The objectives of this tutorial are:
+I) to show that there is are straight forward, systematic
+rules and facts, which when mastered,
+allow one to quickly deduce the convexity (and
+hence tractability) of many problems, often by
+inspection;
+2) to review and introduce some canonical optimization
+problems, which can be used to model
+problems and for which reliable optimization code
+can be readily obtained;
+3) emphasize the modeling and formulation aspect;
+we do not discuss the aspects of writing custom
+codes.
+We assume that the reader has a working knowledge of
+linear algebra and vector calculus, and some (minimal)
+exposure to optimization.
+Our presentation is quite informal. Rather than provide
+details for all the facts and claims presented, our
+goal is instead to give the reader a flavor for what is
+possible with convex optimization. Complete details can
+be found in [7], from which all the material presented
+here is taken. Thus we encourage the reader to skip
+sections that might not seem clear and continue reading;
+the topics are not all interdependent.
+where x is a vector of decision variables, and the
+functions fo, fi and hi, respectively, are the cost, inequality
+constraints, and equality constraints. However,
+such problems can be very hard to solve in general,
+especially when the number of decision variahies in x
+is large. There are several reasons for this difficulty:
+First, the problem “terrain” may be riddled with local
+optima. Second, it might be very hard to find a feasible
+point (i.e., an z which satisfy all equalities and
+inequalities), in fact, the feasible set which needn’t even
+be fully connected, could be empty. Third, stopping
+criteria used in general Optimization algorithms are often
+arbitrary. Forth, optimization algorithms might have very
+poor convergence rates. Fifth, numerical problems could
+cause the minimization algorithm to stop all together or
+wander.
+It has been known for a long time [19], [31, [I@, [I31
+that if the f, are all convex, and the h; are affine, then
+the first three problems disappear: any local optimum
+is, in fact, a global optimum; feasibility of convex op
+timization problems can be determined unambiguously,
+at least in principle; and very precise stopping criteria
+are available using duality. However, convergence rate
+and numerical sensitivity issues still remain a potential
+problem.
+It was not until the late '80's and '90's that researchers
+in the former Soviet Union and United States discovered
+that if, in addition to convexity, the f; satisfied a property
+known as self-concordance. then issues of convergence
+and numerical sensitivity could be avoided using interior
+point methodr [MI, [23], [29], 1301, [251. The selfconcordance
+property is satisfied by a very large set of
+important functions used in engineering. Hence, it is now
+possible to solve a large class of convex optimization
+problems in engineering with great efficiency
+In recent years, convex optimization has become a
+computational tool of central importance in engineering, thanks
+to its ability to solve very large, practical engineering problems
+reliably and efficiently. The goal of this tutorial is to continue
+the overview of modern convex optimization from where our
+ACC2004 Tutorial on Convex Optimization left off, to cover
+important topics that were omitted there due to lack of space
+and time, and highlight the intimate connections between them.
+The topics of duality and interior point algorithms will be our
+focus, along with simple examples. The material in this tutorial
+is excerpted from the recent book on convex optimization, by
+Boyd and Vandenberghe, who have made available a large
+amount of free course material and freely available software.
+These can be downloaded and used immediately by the reader
+both for self-study and to solve real problems.
+The objectives are to continue the overview of modern
+convex optimization from where our ACC2004 Tutorial on
+Convex Optimization [18] left off. Specifically, we review
+the role of duality and demonstrate both its practical and
+theoretical value in convex optimization; describe interior
+point methods for solving convex optimization problems; and
+highlight the intimate connections between duality and the
+solution methods.
+We aim to give an overview of the essential ideas mainly
+defining concepts and listing properties without proof. With
+the exception of minimal narrative comments by the present
+author, all of the material in this tutorial is excerpted from
+chapters 5, 9, 10 and 11 of the book Convex Optimization
+by Boyd and Vandenberghe [8], where complete details
+with lucid explanations can be found. This will be our
+main reference in this tutorial. I am deeply indebted to the
+authors, for generously allowing me to use their material in
+preparing this tutorial. The authors have also made available
+on the internet a large amount of free course material and
+software [14], [22].
+The reader is assumed to have a working knowledge of
+linear algebra and basic vector calculus, and some (minimal)
+exposure to optimization. However, due to its different focus,
+this paper can be read quite independently of our Part I
+paper [18]. The following references also cover the topics
+of optimization [26], [24], [1], [3], [4], convex analysis [23],
+[28], [30], [19], [15], and numerical computation [29], [13],
+[11], [20].
+Also, in order keep the paper quite general, we have
+tried to not to bias our presentation toward any particular
+audience. Hence, the examples used in the paper are very
+simple and intended merely to clarify the optimization ideas
+and concepts. For detailed examples and applications, the
+reader is refered to [8], [2], [6], [5], [7], [10], [12], [17],
+[9], [25], [16], [31], and the references therein.
+We now briefly outline the paper. There are two main
+sections after this one. Section II is on duality, where we
+summarize the key ideas the general theory, illustrating
+the four main practical applications of duality with simple
+examples. Section III is on interior point algorithms, where
+the focus is on barrier methods, which can be implemented
+easily using only a few key technical components, and yet
+are highly effective both in theory and in practice. All of the
+theory we cover can be readily extended to general conic
+programs, such as second order cone programs (SOCP) and
+semidefinite programs (SDP); see [8] for details.
+Notation Our notation is standard [8]. For example, we will
+use dom to denote the domain of a function, int denotes the
+interior of a set, relint denotes the interior of a set relative
+to the smallest affine set containing it (its affine hull), and
+ () to denote componentwise inequality when applied to
+vectors, and semidefinite ordering, when applied to matrices.
+Sn
++ denotes the set of symmetric n×n positive semidefinite
+matrices.
+We consider a stochastic online linear optimization problem
+in which the action space is a compact subset of vector space
+Rd for some integer d ! 1. At each time, an action is
+chosen from the action space and a random cost with an
+unknown distribution (depending on the action) is incurred.
+The expectation of the random cost is given by an unknown
+linear function over the action space. The objective is to
+design a sequential decision making policy to minimize the
+long-term expected total cost. The performance of a policy is
+measured by regret, defined as the increase in expected total
+cost compared to the ideal scenario of known cost models
+(where the best action offering the lowest expected cost is
+always chosen). Note that the regret is a finer performance
+measure than the expected time-average cost since all sublinear
+regrets lead to the minimum expected time-average cost as in
+the ideal scenario of known cost models. We aim to minimize
+the growth rate of the regret over time. It is also of interest to
+characterize the relation between the regret and the problem
+size (the dimension d of the action space) which indicates how
+difficult the learning problem is.
+In this paper, we propose a policy that achieves an
+O(d3T 2/3 log1/3 T ) regret (T denotes the time horizon length)
+for all light-tailed cost distributions defined by the local
+existence of the moment-generating function. We also show
+that with a simple modification, the proposed policy can also
+achieve O(df (T )T 2/3 log1/3 T ) regret where f(T ) is an arbitrary
+function with f(T )"#as T "#. In other words, the
+policy can offer a regret linear with d with an arbitrarily small
+sacrifice in the regret order with time. The proposed policy
+thus offers a performance tradeoff in terms of the network
+size and the time horizon that can be balanced according to the
+specific application context.We further consider a special class
+of the problem when the action space is a polytope or finite and
+show that the optimal logarithmic regret order with time can be
+achieved while preserving the polynomial regret order with the
+problem size. We also consider heavy-tailed cost distributions
+for this special class. Specifically, the regret offered by the
+proposed policy is O(d3 log T ) or O(df (T ) log T ) for lighttailed
+distributions and T 1/q for heavy-tailed distributions
+with moments up to the qth order. A particularly interesting
+application of this problem is adaptive shortest-path routing in
+networks with unknown and stochastically varying link sates,
+as detailed in Sec. III.
+This paper complements existing work on stochastic online
+linear optimization by providing solutions to a much more
+general class of cost models. In particular, existing work focuses
+on distributions with finite support. The policy proposed
+in this paper can handle any light-tailed distributions for a
+general compact action space and can also handle heavy-tailed
+distributions for the special case when the action space is a
+polytope or finite. The proposed policy also offers better regret
+order in certain scenarios as detailed below. The work most
+relevant to this paper is [1], where an algorithm with regret
+order O((d log T )3/2$T) was proposed for cost distributions
+with finite support. In comparison, the policy proposed here
+has a regret order worse in T but better in d. Dani et al. [1]
+also considered the special case where the action space is a
+polytope or finite. An algorithm was proposed to achieve an
+O(d2 log3 T ) regret given a nontrivial and known lower bound
+on the difference in expected cost between the best and other
+actions [1]. The policy proposed in this paper improves the
+regret order in both T and d without any knowledge on the
+cost models.
+In a broader context, the problems considered in this paper
+are variations of the classic Multi-Armed Bandit (MAB)
+problems. In the classic MAB [2]–[7], the action space is
+finite, and each action is referred to as an arm. Arms generate
+independent costs with arbitrary unknown means. The optimal
+regret was shown to be logarithmic with time in [3]. Since
+cost observations from one arm do not provide information
+about other arms, it is easy to see that the regret grows
+linearly with the number of arms in the classic MAB. In [8],
+Agrawal considered continuum-armed bandit with an uncountable
+number of arms. He proposed a policy with O(T 3/4)
+regret for d = 1 under the assumption that the expected
+cost is Lipschitz-continuous with the action. Note that this
+condition is satisfied in the problem considered in this paper.
+In [9], Kleinberg improved Agrawal’s policy to achieve an
+O(T 2/3 log1/3 T ) regret for d = 1. For the general case
+of d > 1, an O(d3T 3/4) regret is achieved under certain
+conditions that are not necessarily satisfied in the problem
+at hand. The policy proposed in this paper offers the same
+regret order as Kleinberg’s policy for d = 1. For d > 1, the
+proposed policy has a better regret order in both T and d. The
+comparison, however, cannot be done on an equal footing since
+the two policies are developed under different assumptions on
+the cost model. Under certain more restrictive and complex
+conditions, Auer et al. [10] developed policies with a regret
+order close to T 1/2 (up to an additional sublogarithmic term)
+for d = 1, and Cope [11] closed the sublogarithmic gap after
+imposing additional assumptions.
+The problems considered in this paper were also studied under
+an adversarial bandit model in which the cost functions are
+chosen by an adversary and are treated as arbitrary bounded
+deterministic quantities [12]. Algorithms were proposed to
+achieve regrets sublinear with time and polynomial with the
+problem size.
+T HE BASIC theory of optical spatial data processing
+has been formulated by several writers [l]-[4], and
+the optimum signal detection, by complex spatial filtering
+was initiated by VanderLugt [S]-[6] several years ago.
+Since then, this complex spatial-filtering technique has been
+shown to be potentially important in the application of
+pattern and character recognition. However, the complex
+filter syntheses were usually constrained in a narrow linear
+region of the transfer characteristic of the photographic
+film. In this paper this linear constraint is removed and a
+nonlinear spatial filter is synthesized by means of a linear
+optimization technique from the nonlinear system theory
+point of view [7]-[lo].
+It is well known that an optical component exhibits
+similarity with an input-output electrical system. Therefore,
+the linear optimization of an optical system can be
+justified conveniently from the analogy of a nonlinear
+system.
+In the following sections, a general theory of linear
+optimization for a typical transfer characteristic of a
+photographic film is formulated. The application of the
+linear optimization technique in the synthesis of nonlinear
+spatial filters is given. Analysis of the signal detection due
+to nonlinear spatial filtering is also presented. Finally,
+conclusions are drawn.
+It is well known that the transfer characteristic of a
+photographic film is nonlinear, as shown in Fig. 1. Such a
+curve may be approximated by a finite power series
+where T is the transmittance, E is the exposure, and the a,
+are the real coefficients.
+In the linear optimization, a linear function is chosen to
+replace the nonlinear one of (1) as closely as possible
+Linear programming formulations cannot handle
+the presence of uncertainty in the problem data and even
+small variations in the data can render an optimal solution
+infeasible. A number of robust linear optimization techniques
+produce formulations (not necessarily linear) that guarantee
+the feasibility of the optimal solutions for all realizations of
+the uncertain data. A recent robust approach in [1] maintains
+the linearity of the formulation and is able to strike a balance
+between the conservatism and quality of a solution by allowing
+less robust solutions. In this work we demonstrate how to use
+distributional information on problem data in robust linear
+optimization. We adopt the robust model of [1] and present an
+approach that exploits distributional information on problem
+data to decide the level of robustness of the formulation, thus,
+leading to much more cost-effective solutions (by 50% or more
+in some instances). We apply our methodology to a stochastic
+inventory control problem with quality of service constraints.
+Index Terms—Robust optimization, Linear programming,
+Data uncertainty, Inventory Control, Quality-of-Service.
+linear programming (LP) problem is, perhaps, among
+the most fortunate outcomes when we formulate an
+optimization problem. Theory and methods are very mature,
+there are many excellent solvers to choose from, and the
+problem can be solved in polynomial time with interiorpoint
+methods. Alas, the world is neither (always) linear nor
+certain. In this paper we focus on the latter shortcoming of
+LP-based modeling, that is, the presence of uncertainty in
+the problem data.
+A certainty equivalence approach offers a way to deal with
+uncertainty. For every uncertain data element, use a nominal
+value – usually its mean – and form a nominal problem which
+remains an LP. A solution obtained in this manner, however,
+is non-robust as small changes in the problem data can render
+the solution infeasible. In many realistic settings this implies
+that the solution becomes useless.
+To prevent possible infeasibility of a solution and therefore
+to ensure its usability, one may construct a robust problem
+whose solution is guaranteed to be feasible. Soyster [2]
+appears to be the first who addressed this issue for LPs. He
+considers an LP problem with “column-wise” uncertainty:
+where each column Aj of the constraint matrix A belongs
+to a given convex set Kj . Soyster [2] shows that the problem
+can be recast as a finite dimensional LP problem.
+Ben-Tal and Nemirovski [3] point out that the case of
+“column-wise” uncertainty considered in [2] is extremely
+conservative. They instead consider “row-wise” uncertainty
+where the rows of the constraint matrix are known to belong
+to given convex sets. In this case, they show that the robust
+problem is typically not an LP problem; for example, when
+the uncertain sets for the rows of A are ellipsoids, the robust
+problem turns out to be a conic quadratic problem.
+The robust models of Soyster [2] and Ben-Tal and Nemirovski
+[3] adopt a “worst-case” approach. Although the
+guaranteed feasibility is an attractive feature of those robust
+formulations, it comes with a price: a degradation of the
+objective value. In several applications, however, this price
+may be unacceptable, especially if the “worst-case” happens
+very rarely. Hence for these applications, it could be more
+desirable to obtain a less robust solution with a better
+objective value, which also admits a very low probability
+of being infeasible. This is the rationale for the robust
+optimization approach of Bertsimas and Sim [1].
+Bertsimas and Sim [1] consider “element-wise” uncertainty:
+each uncertain element is modeled as an independent,
+symmetric, and bounded random variable whose range is
+known but the distribution is unknown. Their approach is
+flexible enough to encompass the nominal problem as well
+as the Soyster model as special cases. Like the Soyster
+model, the robust formulation in [1] remains an LP. The
+robustness of the formulation in [1] is controlled by a set
+of parameters which regulates the “degree of uncertainty”
+in the problem data. Bertsimas and Sim [1] provide bounds
+on the probability that an optimal solution of their robust
+formulation becomes infeasible due to data uncertainty and
+these bounds hold for all probability distributions of the
+problem data as long as they satisfy a symmetry assumption.
+Another research direction in the literature to deal with
+uncertainty in the problem data is to use chance constraints:
+where a
+i is the ith row of A. By adjusting the values of i’s,
+this approach also allows less robust solutions with better
+objective values. Two interesting approximation methods
+for more general forms of chance constraints are given in
+Nemirovski and Shapiro [4] and in Calafiore and Campi [5].
+The starting point for our work is the robust formulation
+of [1]. We will quantify the benefit of having access to
+probability distributions of problem data. We will show
+that if probability distributions are known one can obtain
+solutions that are much less conservative than the ones
+obtained in [1] (by 50% or more in several examples we
+present). The crux of the matter is that by exploiting distributional
+information we can obtain much tighter bounds
+on the probability that an optimal solution of the robust
+formulation becomes infeasible; this leads us to “injecting”
+less robustness into the formulation and to much more costeffective
+solutions.
+Our motivation comes from the (emerging) abundance of
+data for many real-world applications. Mining these data sets,
+one can obtain distributional information and, as we show,
+put it into good use. When data is not available, our work can
+help quantify the benefits that can result from data collection
+and from implementing estimation techniques for obtaining
+distributional information. We expect that in many settings,
+these benefits can exceed the associated costs.
+ROBUST LINEAR OPTIMIZATION In this section we consider general LPs and start by
+reviewing the robust formulation of [1]. Our new bounds
+on the constraint violation probability are presented in Subsection
+II-B. Subsection II-C reports some numerical results.
+where c, l, u ∈ Rn, b ∈ Rm, A is an m × n matrix, and
+x ∈ Rn is the decision vector. We assume, without loss
+of generality, that only the elements of A are subject to
+uncertainty.1 The elements of A are of two types: random
+and deterministic. In particular, consider the ith row of A
+and let Ji be the set of indices j such that the corresponding
+aij are subject to uncertainty. We assume that for all i each
+element aij , j ∈ Ji, is modeled as an independent and
+bounded random variable taking values in [aij − ˆaij , aij +
+ˆaij ], where aij = E[aij ] and ˆaij > 0. Elements aij , j /∈ Ji,
+on the other hand, are deterministic and have fixed values aij .
+For the probability distribution of aij , for all i and j ∈ Ji,
+the following symmetry assumption will be in effect for most
+of the results we will present.
+An optimization model is proposed in [10] which tends to
+maximize the number of simultaneous active links in the
+network taking into consideration the interference as the main
+constraint. This solution increases the local throughput but it
+doesn’t produce a global optimization because routing is not
+considered and consequently the throughput along the routes is
+not optimized.
+A more advanced model [9] is designed which assumes that
+fast channel switching and synchronization is possible in the
+network. The system consists of channels assignment, routing
+and scheduling algorithms which work together to achieve
+interference free optimal channels assignment. The system is
+rather complex and is not feasible because the link scheduling
+problem is NP-Complete.

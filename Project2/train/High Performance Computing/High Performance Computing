@@ -1,0 +1,519 @@
+cloud computing
+distributed system
+social network
+decentralized online social networks 
+parallel computing
+scalability 
+Message passing interface
+Green Computing
+Distributed Virtual Environments
+virtual machine
+MPICH
+MPI
+Multithreading
+Thread
+Speedup
+parallel algorithms
+process
+Embarrassingly parallel Software lockout Scalability Race condition Deadlock Livelock Starvation Deterministic algorithm Parallel slowdown 
+hadoop
+redundant array of independent disks
+RAID
+GPU
+Virtual Machine
+Data Center
+check-pointing
+migration
+speedup
+supercomputer
+ multi-core
+ parallelism 
+ cluster
+ petaflop
+ teraflop 
+ Very-large-scale integration
+ OpenMP
+ CUDA
+ General-purpose computing on graphics processing units
+ GPGPU
+ OpenCL
+ grid computing
+ supercomputing
+  LINPACK benchmarks
+  distributed memory
+  Blocking 
+  Non-blocking
+  Heterogeneity
+  CORBA
+  RMI
+  File sharing
+  peer-to-peer
+  P2P
+  service-oriented
+  Amazon Elastic Compute Cloud
+  MapReduce
+  client-server
+  Network File System 
+  NFS
+  Kerberos
+  remote method invocation
+  RPC
+  Eucalyptus
+  Hadoop
+  Azure
+  Dropbox
+  deadlock
+  concurrency
+  marshalling
+  Middleware
+  publish-subscribe
+  multiprocessor
+  mutual exclusion
+  Nagle
+  heterogeneity
+  replication
+  BitTorrent
+  Skype
+  multi-threaded
+  throughput
+  Berkeley
+  synchronization
+  Cristian
+  virtualization
+  Lamport
+  POSIX
+  multiprocessor
+  synchronization
+  VMWare
+  Xen
+  Websphere
+  data intensive
+  The specific demands of high-performance computing (HPC)
+often mismatch the assumptions and algorithms provided by
+legacy operating systems (OS) for common workload mixes.
+While feature- and application-rich OSes allow for flexible
+and low-cost hardware configurations, rapid development,
+and flexible testing and debugging, the mismatch comes at
+the cost of — oftentimes significant — performance degradation
+for HPC applications.
+The ubiquitous availability of virtualization support in all
+relevant hardware architectures enables new programming
+and execution models for HPC applications without loosing
+the comfort and support of existing OS and application
+environments. In this paper we discuss the trends, motivations,
+and issues in hardware virtualization with emphasis
+on their value in HPC environments.
+The requirements of high-performance computing (HPC) on
+an operating system (OS) significantly differ from typical
+server and workstation workloads. HPC applications have
+historically pushed the limits of CPU performance and memory
+size to run ever-larger problem sizes. Space and time
+multiplexing — as provided by hardware virtualization —
+is of no importance to HPC users. In this paper we argue
+that virtualization provides other benefits like the specialization
+of HPC operating systems while preserving legacy
+compatibility.
+With virtualization, multiple operating systems can safely
+coexist on one physical machine. The machine is multiplexed
+by a small privileged kernel, commonly referred to
+as a hypervisor or virtual machine monitor (VMM), which
+provides the illusion of one or more real machines. While
+dating back to the early 1970’s [5,14], virtual machines lately
+have had significant attention for server consolidation in
+data centers. Consolidation of oftentimes highly underutilized
+servers greatly reduces hardware and maintenance cost.
+Virtualized devices and live migration of running operating
+systems decouple software installations from the physical
+hardware configuration. Coexistence of different versions of
+operating systems avoids incompatibilities, reduces testing
+and upgrade costs, and eliminates issues with conflicting
+software packages.
+
+While the consolidation aspect of virtualization is less relevant
+to HPC workloads, virtualization enables the specialization
+of operating systems with almost full control over
+hardware resources. The hypervisor safely multiplexes the
+hardware resources of the physical machine but leaves the
+specific hardware resource allocation to the operating system
+in the virtual machine. Multiple, potentially very different
+operating systems can thereby coexist. These OSes,
+specialized for particular workloads, are also called library
+OSes.
+This coexistence with minimal interference is the key value
+of virtualization for HPC. An HPC application can now
+bypass legacy OS mechanisms and algorithms and can act
+independently and use hardware-specific optimizations like
+super-pages. However, the colocation with legacy OSes enables
+the HPC application to use selected services that are
+convenient (see Figure 1). The virtual machines can communicate
+via a low-overhead and low-latency communication
+mechanism provided by the hypervisor or share parts
+of the physical memory.
+For example, the plethora of hardware devices used in lowcost
+workstations of cluster environments require a sufficiently
+diverse number of device drivers. Support on a oneoff
+basis for specialized applications is at least cumbersome
+if not unfeasible. Here, a colocated legacy OS can serve as
+a provider for device access with minimal overall resource
+overhead [13]. HPC applications that require traditional or
+non-critical OS services, such as access to a file system, debug
+facilities, or a TCP/IP stack can similarly forward those
+requests. The PROSE prototype [6] is an example of such a In the remainder of this paper we discuss the benefits, limitations,
+and usage cases of virtualization for HPC such as
+security, checkpoint/restart, preemption, introspection and
+portability.
+
+Virtualization can enhance productivity in development and
+testing of HPC applications and systems, in several ways.
+With authorization, the hypervisor can allow one VM to
+monitor the state (including memory), interrupts and communications
+(including calls to the hypervisor) of another
+VM, for debugging or performance analysis. Because this
+introspection code runs outside the VM being monitored, it
+can look at any path in the OS or application, without the
+limitations that may occur when a debugger is inside, and
+shares hardware state with, the OS or application being debugged.
+This may be especially beneficial when developing
+or using a specialized minimal library OS for a specific HPC
+application, mentioned above [11].
+
+The hypervisor(s) can provide a virtual cluster of VMs, one
+for each node in a specific configuration of an HPC application
+that uses a cluster programming model like MPI. The
+VMs can be allocated across fewer real nodes, even a single
+node, to test at realistic scale but with fewer resources. Virtualization
+allows testing on the machine to be used for production,
+using only modest resources, simultaneously with
+production applications that are using most of the resources.
+Moving an application from testing to production is only a
+matter of allocating adequate real resources to the virtual
+nodes (VMs) used to execute the application. Productivity
+may also be enhanced by using a virtual cluster, running
+multiple copies of the OS and application, to achieve scaling
+in an application originally written for a non-scalable OS,
+avoiding the rewrite for another OS. This was a primary
+motivation of the Disco system [3].
+
+Because of VM isolation, hardware or software failures, as
+in a processor core, memory, OS or application, directly affect
+only one VM, unless the hypervisor itself suffers a failure.
+If the affected VM cannot recover itself and truely fails,
+its non-failing hardware resources can be unambiguously reclaimed
+by the hypervisor and used in restarting the failed
+VM or by other VMs. Other VMs are not aware of the
+failure unless they have a communication dependency on
+the affected VM, but they may run slower if they shared
+a failed processor core, for example. This fault isolation
+enhances system reliability and increases the probability of
+completion of long-running HPC applications, without any
+special effort by the OSes that run in the VMs.
+
+In recent years, cloud computing has attracted attention from
+industry and academic worlds, becoming increasingly common
+in the literature to find cases of cloud adoption by companies
+and research institutions. One of the reason is the possibility
+of acquiring resources in a dynamic and elastic way. In fact,
+elasticity is a key feature in the cloud computing context, and
+perhaps what distinguishes this computing paradigm from the
+other ones.
+Commonly, the term elasticity is used as synonym to scalability,
+however they are different concepts and should never be
+used interchangeably. Scalability is the ability of the system
+to be enlarged to a size which was expected to accommodate
+a future growth or its ability to improve throughput when
+additional resources are added [1], [2]. In a scalable cloud, it is
+possible add resources whenever the demand rises, in order to
+keep applications performing at the required level. In its turn,
+an application is said scalable when its efficiency is maintained
+when the resources amount and the problem size are increased
+proportionally. The scalability of an application reflects its
+capacity in making use of available resources effectively [3].
+NIST [4] defines elasticity as the ability for customers to
+quickly request, receive, and later release as many resources
+as needed. The elasticity implies that the actual amount of
+resources used by a user may be changed over time, without
+any long-term indication about the future resources demands
+[5]. Ideally, to the consumer, the capabilities available for provisioning
+often appear to be unlimited and can be purchased
+in any quantity at any time [6]. An elastic application is the
+one that is able to automatically adapt itself to changes in
+resources amount or request/release resources according to its
+demand.
+Comparing both definitions, it is possible identify the differences
+between scalability and elasticity. Scalability is a static
+
+property that describes the systems ability to reach a certain
+scale (such as a thousand servers or a million requests per
+minute). On other hand, elasticity is a dynamic property that
+allows the system to scale on-demand in an operational system
+[2], [7].
+Users and the cloud providers have different perceptions
+of elasticity. Considering the abstractions provided by the
+cloud, the users only have access to interfaces, whereby is
+possible to access “infinite resources”. In turn, the provider is
+responsible for acquiring, managing and upgrading the cloud
+infrastructure. In addition, it must also provide the mechanisms
+to enable elastic provision of resources. Some cloud platforms
+provide interfaces and API’s that allow users changing its resources
+manually. Other clouds provide solutions that include
+fully automated monitoring services, automatic allocation of
+resources and even load balancing. The solutions developed
+by academy are similar to those provided by commercial
+providers, but include new approaches and techniques for
+elastic resources provisioning.
+Although many elasticity mechanisms have been proposed
+in the research literature and the commercial field in last
+years, there are no published works addressing the state-ofthe-
+art of cloud elasticity. In this sense, we present a survey
+of elasticity solutions, with the objective to providing a better
+understanding of the current research issues in this field.
+The survey is divided in three parts. In the first one, we
+present a classification for elasticity solutions, created from
+a study and analysis of diverse elasticity mechanisms. Next,
+we describe and classify (using the proposed classification)
+the elasticity solutions developed for infrastructure clouds and
+applications. Finally, some open issues and challenges related
+to the use of elasticity feature in cloud computing.
+
+smart grid is conceptualized as a combination of electrical
+network and communication infrastructure.
+With the implementation of bidirectional communication
+and power flows, a smart grid is capable of delivering electricity
+more efficiently and reliably than the traditional
+power grid. A smart grid consists of a power network with
+‘intelligent’ entities that can operate, communicate, and
+interact autonomously, in order to efficiently deliver electricity
+to the customers. This heterogeneity in architecture
+of a smart grid motivates the use of advanced technology
+for overcoming various technical challenges at different levels.
+Any smart grid infrastructure should support real-time,
+two-way communication between utilities and consumers,
+and should allow software systems at both the producer
+and consumer ends to control and manage the power usage
+[1]. To manage millions of smart meters in secure, reliable,
+and scalable ways, utilities must extend this communication
+network management system to a distributed data center. In
+this respect, cloud computing is envisaged to play key roles of
+motivation in the design of the future smart grid. Cloud
+computing is an emerging technology advocated for
+enabling reliable and on-demand access to different computing
+sources that can be quickly provisioned and released
+in a cost-effective way to the service providers [2], [3]. Using
+cloud infrastructure, a customer can gain access to their applications anytime, and from anywhere, through a connected
+device to the network.
+
+With the development of the state-of-the-art smart grid systems,
+it needs the support of bi-directional communication
+facility, and processing of the information in real-time as
+well. Additionally, energy demand from the users changes
+dynamically in different time-periods (such as on-peak,
+off-peak, and mid-peak), which in turn requires dynamic
+availability of the communication facility (such as bandwidth,
+processing units, and storage devices). Therefore,
+there is a need to integrate a common platform with the
+smart grid which is able to support the smart grid requirements
+as follows:
+a) Energy management. The existing power grids need
+optimal balancing of electricity demand and supply
+between the customers and the utility providers [4]. Smart
+grids are capable of addressing this requirement. Such
+features in a smart grid is realized by the integration of
+various energy management systems (EMS) such as home
+energy management (HEM), demand side management
+(DSM), and building energy management (BEMS) [5], [6].
+A smart grid allows various renewable energy sources
+(such as solar and wind) to have efficient management of
+supply and demand.
+b) Need to support multiple devices in a common platform.
+In a smart grid environment, multiple devices are implemented.
+These multiple devices are home appliances,
+smart meters, micro-grids, substations, sensor nodes, and
+communication-network devices [7]. A suitable protocol
+architecture needs to be implemented to support these
+multiple devices in order to have reliable, and efficient
+electric supply.
+c) Information management. Information management is an
+important aspect in the smart grid architecture [8], [9]. In typical city environments, millions of smart meters are
+deployed in the distribution sites. These smart meters generate
+massive data for real-time communication with the
+utilities. A proper data management mechanism is necessary
+to be deployed for handling such massive data.
+d) Layered architecture. A smart grid is a combination of
+different layers—network, communication, electricity distribution,
+transmission, and generation [10]. The smart grid is
+expected to support the overlay communication network on
+the underlay electricity network.
+e) Heterogeneous architecture. The heterogeneous architecture
+is a special characteristic of a smart grid. Demand
+response (DR), distributed generation, resource scheduling,
+and real-time pricing model contribute to the heterogeneity
+of a smart grid [11].
+f) Security. Effective authentication and authorization
+techniques are required for the preservation of users’ privacy.
+Some security aspects in a smart grid are data outage,
+threat detection, and cyber-physical attacks [12], [13]. A
+proper privacy policy needs to be implemented to motivate
+customers’ participation [12], [14].
+Additionally, cloud computing is a useful technique
+which can fulfill the requirements of the smart grid in realtime
+adequately, while having the following characteristics
+[15], [16]:
+Optimizing energy costs enabling online monitoring
+and control of all grid assets. Providing different software applications to the
+users in the smart grid (such as customers, service
+providers, third parties) for supporting payment
+according to energy consumption.Reduction in carbon emissions through grid access
+of large wind, hydro, and solar power plants [17].
+Active management of demand and supply curves. Providing unlimited data storage for storing customer
+data. Supporting customers with data access from the
+cloud.
+
+A grid may be defined as a collection of computing
+resources distributed over a local or wide area network, and
+available to an end user as a single large computing system.
+Originally, the grid focused on the areas of computing power,
+data access, and storage resources. It was intended for largescale
+and distributed scientific computing that requires efficient
+and dynamically determined access to large amounts of data
+and computational resources that are distributed along several
+independently administered networks. However, the use of grid
+computing has been expanding lately to include deployment of
+grid technologies within the context of business, which
+significantly widens the range of applicability of grid
+
+technologies. However, security has been a central issue in grid
+computing from the outset, and has been regarded as the most
+significant challenge for grid computing. As a result, novel
+security technologies have been evolving all the time within
+the grid computing researchers. In this paper, we present the
+classification of the different mechanisms and solutions
+pertaining to the different components of grid computing
+security. As shown in (Fig. I), the proposed classification
+subdivide the grid computing security into five main
+categories, which are Resources Level, Service Level,
+Authentication & Authorization Level, Information Level, and
+Management Level Solutions.
+
+Large-scale distributed computing systems are
+composed of a large number of computing and storage
+resources connected through a network. Large-scale
+distributing computing systems include clusters, grids and
+clouds. Cluster computing systems can be classified as
+high availability clusters and load balancing clusters. In
+high availability clusters a small number of redundant
+nodes is used in order to eliminate single points of
+failures, while in load balancing clusters a larger number
+of nodes is used with focus on providing an environment
+for High Performance Computing (HPC). Cluster
+computing system is embedded both in grid computing
+systems and cloud computing systems [1]. However,
+compared to cluster computing systems, grid computing
+systems are more loosely coupled, heterogeneous and
+geographically dispersed. Cloud computing systems, using
+the virtualization technology, can provide scalable,
+reliable and cost-efficient virtual clusters [2][3]. The
+analysis of their applicability for HPC applications is one
+of interesting novel research topics [4][5][6].
+As such large-scale distributed computing systems
+grow in size, adding more and more computing nodes and
+storage resources, their energy consumption is
+exponentially increasing [7]. In computer systems, energy
+(in joule), is the electricity resource that can power the
+hardware components to do computation and the dissipate
+rate of energy is power (in watts, joules per second). The
+
+ever-increasing energy consumption of large-scale
+distributed computing systems causes higher operation
+costs (e.g. electricity bills) and has negative environmental
+impacts (e.g. carbon dioxide emissions). Therefore, while
+designing such systems the focus is shifted from
+performance improvements to the energy efficiency.
+Energy can be reduced at different levels of distributed
+architecture: individually on each node or hardware
+component-level, at the middleware level, at the
+networking level and at the application level [8][9][10]. A
+processor is component that consumes dominant amount
+of energy on each node. Thus, most of techniques are
+designed to reduce energy consumption of the processor
+[11][12], but also energy consumption reduction
+techniques have been proposed for other devices such as
+the phase-change memory and solid-state disk driver.
+Suboptimal use of systems resources (e.g. overprovisioning)
+is the primary source of energy inefficiency
+at middleware layer [8][9][13]. In over-provisioned
+system components usually consume excessive power
+when they are relatively idle or underutilized. Energyproportional
+computing [14] introduces the concept of
+consuming energy proportional to resource utilization so
+that an idle or underutilized component consumes less
+energy. For improving energy efficiency at middleware
+layer, energy-aware resource and workload management
+algorithms are utilized [13]. Increased network traffic in
+many bandwidth sensitive network applications results
+also in increased number of networking devices such as
+switches and routers and therefore in increased energy
+consumption. Thus different approaches for new energy
+aware network protocols and network infrastructure are
+developed for improving energy efficiency at network
+layer [15][16]. The energy consumption heavily depends
+on the characteristic of application running. Some
+applications are computationally intensive, other are data
+intensive, while other are hybrid of both. Thus energyaware
+programing models, regarding various types of
+workloads and architectures, are needed in order to
+develop energy efficient applications [17][18].
+
+Software-based Energy Measurement
+Graphics processing units (GPUs) have become one of
+the most popular computing platforms for high-throughput
+computing applications. For such applications, GPUs
+achieve orders of magnitude higher throughput over CPUs
+by exploiting thousands of cores and gigabytes of highbandwidth
+memory [26]. To satisfy the applications’ increasing
+resource requirements, GPU manufacturers consistently
+scaled up GPUs by adding more cores and increasing
+memory size and bandwidth [25].
+Typically, running a GPU application on a GPU requires
+manual GPU memory management. Programmers first determine
+which functions of an application to run on the
+GPU. Next, they allocate the required GPU memory size
+and transfer input data from CPU memory to GPU memory
+before executing the functions. Once the transfer completes,
+the GPU executes the functions using the data placed
+on GPU memory. When the GPU completes executing
+the functions, programmers transfer output data from GPU
+memory to CPU memory.
+While the manual memory management provides modest
+programmability as programmers do not have to deal
+with GPU memory allocations during runtime, it provides
+limited performance as it does not overlap CPU-GPU data
+transfers and GPU executions. Moreover, the manual memory
+management is not scalable due to difficulties in scaling
+the capacity of bandwidth-targeting GPU memory [11]. The
+capacity issue will become more critical when future GPU
+architectures and programming models run multiple kernels
+simultaneously on a single GPU for achieving higher GPU
+resource utilization.
+Alternatively, programmers can use pinned host memory
+which forces the GPU to always access CPU memory
+by disabling GPU memory [20, 29]. The pinned host
+memory model provides programmers a view of the CPU
+memory-sized programming space and overlaps GPU executions
+and CPU-GPU data transfers. Therefore, it provides
+easy programmability by effectively eliminating manual
+memory management overhead and GPU memory size
+restriction. However, it suffers from a significant performance
+overhead when the GPU initiates redundant transfers
+of data frequently accessed during its executions.
+In order to achieve both easy programmability and high
+performance, programmers need a new GPU architecture
+which preserves the pinned host memory-like programming
+model and improves the performance by reducing CPUGPU
+data transfers. The new model requires a dynamic
+memory management feature satisfying the following design
+requirements. First, it must provide programmers a
+view of the CPU memory-sized programming space. Second,
+it must dynamically place only the current working set
+on GPU memory to reduce GPU memory size requirements and CPU-GPU data transfers. Finally, it must perform GPU
+executions in parallel with CPU-GPU data transfers to further
+improve the performance.

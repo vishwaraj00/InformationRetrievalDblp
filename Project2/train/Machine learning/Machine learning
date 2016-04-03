@@ -1,0 +1,499 @@
+machine learning
+pattern recognition
+computational learning 
+computational statistics
+unsupervised learning
+supervised 
+Reinforcement 
+classification
+ regression
+ clustering
+ Density estimation
+ Dimensionality reduction
+ Decision tree 
+ Association rule 
+ Artificial neural networks
+ Deep Learning
+ Inductive logic programming
+ Support vector machines
+ Clustering
+ Bayesian networks
+ Representation learning
+ Manifold learning
+ Similarity and metric learning
+ Sparse dictionary learning
+ Genetic algorithms
+ Hopfield networks
+ Boltzmann machines
+ Gaussian process regression
+ Inductive logic programming
+ Lazy learning
+ Learning Automata
+Learning Vector Quantization
+Logistic Model Tree
+Fisher's linear discriminant
+Logistic regression
+Multinomial logistic regression
+Naive Bayes classifier
+Perceptron
+Support vector machines
+k-nearest neighbor
+Naive Bayes
+Vector Quantization
+Self-organizing map
+Apriori algorithm
+Eclat algorithm
+FP-growth algorithm
+Single-linkage clustering
+Conceptual clustering
+Fuzzy clustering
+OPTICS algorithm
+Generative 
+Low-density separation
+Graph-based 
+Co-training
+Temporal difference learning
+Q-learning
+Learning Automata
+Deep belief networks
+Deep Boltzmann machines
+Deep Convolutional neural networks
+Deep Recurrent neural networks
+Hierarchical temporal memory
+perceptron algorithm
+Linear regression
+Nearest neighbor
+Temporal difference learning
+TD learning
+learning algorithm
+supervised learning
+unsupervised learning
+data analysis
+Curve fitting
+Estimation Theory
+Forecasting
+Fraction of variance unexplained
+Function approximation
+Generalized linear models
+Kriging 
+Local regression
+Modifiable areal unit problem
+Multivariate adaptive regression splines
+Multivariate normal distribution
+Pearson product-moment correlation coefficient
+Prediction interval
+Regression validation
+Robust regression
+Segmented regression
+Signal processing
+Stepwise regression
+Trend estimation
+Anomaly detection
+Structured prediction
+K-means 
+Balanced clustering
+Clustering high-dimensional data
+Conceptual clustering
+Consensus clustering
+Constrained clustering
+Data stream clustering
+HCS clustering
+Sequence clustering
+Spectral clustering
+Dimension reduction
+Artificial neural network 
+Nearest neighbor search
+Neighbourhood components analysis
+Latent class analysis
+Fixed-radius near neighbors
+Nearest neighbor distance ratio
+Bayesian procedures
+Binary and multiclass classification
+Frequentist procedures
+Probit regression
+Logistic regression
+Support vector machines
+Linear classifiers
+Fisher's linear discriminant
+Logistic regression
+Naive Bayes classifier
+Perceptron
+Support vector machines
+Least squares support vector machines
+Quadratic classifiers
+Kernel estimation
+k-nearest neighbor
+Boosting (meta-algorithm)
+Decision tree
+Random forests
+Neural network
+Learning vector quantization
+probability distribution
+semi-supervised
+In supervised learning, a labeled training set (i.e., predefined
+inputs and known outputs) is used to build the system model.
+This model is used to represent the learned relation between
+the input, output and system parameters. In this subsection,
+the major supervised learning algorithms are discussed in the
+context of WSNs. In fact, supervised learning algorithms are
+extensively used to solve several challenges in WSNs such
+as localization and objects targeting (e.g., [21]鈥揫23]), event
+detection and query processing (e.g., [24]鈥揫27]), media access
+control (e.g., [28]鈥揫30]), security and intrusion detection (e.g.,
+[31]鈥揫34]), and quality of service (QoS), data integrity and fault
+detection (e.g., [35]鈥揫37]).
+1) K-Nearest Neighbor (k-NN): This supervised learning
+algorithm classifies a data sample (called a query point) based
+on the labels (i.e., the output values) of the near data samples.
+For example, missing readings of a sensor node can
+be predicted using the average measurements of neighboring
+sensors within specific diameter limits. There are several functions
+to determine the nearest set of nodes. A simple method
+is to use the Euclidean distance between different sensors.
+K-nearest neighbor does not need high computational power, as
+the function is computed relative to local points (i.e., k-nearest
+points, where k is a small positive integer). This factor coupled
+with the correlated readings of neighboring nodes makes
+k-nearest neighbor a suitable distributed learning algorithm for
+WSNs. In [38], it has been shown that the k-NN algorithm
+may provide inaccurate results when analyzing problems with
+high-dimensional spaces (more than 10鈥�15 dimensions) as the
+distance to different data samples becomes invariant (i.e., the
+distances to the nearest and farthest neighbors are slightly
+similar). In WSNs, the most important application of the
+k-nearest neighbor algorithm is in the query processing subsystem
+(e.g., [24], [25]).
+2) Decision Tree (DT): It is a classification method for
+predicting labels of data by iterating the input data through a
+learning tree [39]. During this process, the feature properties
+are compared relative to decision conditions to reach a specific
+category. The literature is very rich with solutions that use DT
+algorithm to resolve different WSNs鈥� design challenges. For
+example, DT provides a simple, but efficient method to identify
+link reliability in WSNs by identifying a few critical features
+such as loss rate, corruption rate, mean time to failure (MTTF)
+and mean time to restore (MTTR). However, DT works only
+with linearly separable data and the process of building optimal
+learning trees is NP-complete [40].
+3) Neural Networks (NNs): This learning algorithm could
+be constructed by cascading chains of decision units (e.g.,
+perceptrons or radial basis functions) used to recognize nonlinear
+and complex functions [9]. In WSNs, using neural networks
+in distributed manners is still not so pervasive due to
+the high computational requirements for learning the network
+weights, as well as the high management overhead. However,
+in centralized solutions, neural networks can learn multiple
+outputs and decision boundaries at once [41], which makes
+them suitable for solving several network challenges using the
+same model.
+We consider a sensor node localization problem (i.e., determining
+node鈥檚 geographical position) as an application example
+of neural network in WSNs. Node localization can be
+based on propagating angle and distance measurements of the
+received signals from anchor nodes [42]. Such measurements
+may include received signal strength indicator (RSSI), time
+of arrival (TOA), and time difference of arrival (TDOA) as
+illustrated in Fig. 1. After supervised training, neural network
+generates an estimated node location as vector-valued coordinates
+in 3D space. Related algorithms to neural networks
+include self-organizing map (or Kohonen maps) and learning
+vector quantization (LVQ) (see [43] and references therein
+for an introduction to these methods). In addition to function
+estimation, one of the important applications of neural networks
+is for big data (high-dimensional and complex data set) tuning
+and dimensionality reduction [44].
+4) Support Vector Machines (SVMs): It is a machine learning
+algorithm that learns to classify data points using labeled
+training samples [45]. For example, one approach for detecting
+malicious behavior of a node is by using SVM to investigate
+temporal and spatial correlations of data. To illustrate, given
+WSN鈥檚 observations as points in the feature space, SVM divides
+the space into parts. These parts are separated by as wide
+as possible margins (i.e., separation gaps), and new reading
+will be classified based on which side of the gaps they fall
+on as shown in Fig. 2. An SVM algorithm, which includes
+optimizing a quadratic function with linear constraints (that is,
+the problem of constructing a set of hyperplanes), provides an
+alternative method to the multi-layer neural network with nonconvex
+and unconstrained optimization problem [39]. Potential
+applications of SVM in WSNs are security (e.g., [33], [34],
+[46]鈥揫48]) and localization (e.g., [49]鈥揫51]). For a detailed
+discussion of the SVM theory, please refer to [45].
+5) Bayesian Statistics: Unlike most machine learning algorithms,
+Bayesian inference requires a relatively small number
+of training samples [52]. Bayesian methods adapt probability
+distribution to efficiently learn uncertain concepts (e.g., 胃)
+without over-fitting. The crux of the matter is to use the current
+knowledge (e.g., collected data abbreviated as D) to update
+prior beliefs into posterior beliefs p(胃|D) 鈭� p(胃)p(D|胃), where
+p(胃|D) is the posterior probability of the parameter 胃 given
+the observation D, and p(D|胃) is the likelihood of the observation
+D given the parameter 胃. One application of Bayesian
+inference in WSNs is assessing event consistency (胃) using
+incomplete data sets (D) by investigating prior knowledge
+about the environment. However, such statistical knowledge
+requirement limits the wide adoption of Bayesian algorithms
+in WSNs. A related statistical learning algorithm is Gaussian
+process regression (GPR) model [53].
+Unsupervised learners are not provided with labels (i.e., there
+is no output vector). Basically, the goal of an unsupervised
+learning algorithm is to classify the sample set into different
+groups by investigating the similarity between them. As
+expected, this theme of learning algorithms is widely used
+in node clustering and data aggregation problems (e.g., [54]鈥�
+[60]). Indeed, this wide adoption is due to data structures (i.e.,
+no labeled data is available) and the desired outcome in such
+problems.
+1) K-Means Clustering: The k-means algorithm [61] is used
+to recognize data into different classes (known as clusters).
+This unsupervised learning algorithm is widely used in sensor
+node clustering problem due to its linear complexity and simple
+implementation. The k-means steps to resolve such node
+clustering problem are (a) randomly choose k nodes to be
+the initial centroids for different clusters; (b) label each node
+with the closest centroid using a distance function; (c) recompute
+the centroids using the current node memberships and
+(d) stop if the convergence condition is valid (e.g., a predefined
+threshold for the sum of distances between nodes and their
+perspective centroids), otherwise go back to step (b).
+2) Principal Component Analysis (PCA): It is a multivariate
+method for data compression and dimensionality reduction that
+aims to extract important information from data and present
+it as a set of new orthogonal variables called principal components
+[62]. As shown in Fig. 3, the principal components
+are ordered such that the first component corresponds to the
+highest-variance direction of the data, and so on for the other
+components. Hence, the least-variance components can be discarded
+as they contain the least information content. For example,
+PCA reduces the amount of transmitted data among sensor
+nodes by finding a small set of uncorrelated linear combinations
+of original readings. Furthermore, the PCA method simplifies
+the problem solving by considering only few conditions in
+very large variable problems (i.e., tuning big data into tiny
+data representation) [63]. A thorough discussion of the PCA
+theory (e.g., the eigenvalue, eigenvector, and covariance matrix
+analysis) is given in [62].
+Reinforcement learning enables an agent (e.g., a sensor node)
+to learn by interacting with its environment. The agent will
+learn to take the best actions that maximize its long-term
+rewards by using its own experience. The most well-known
+reinforcement learning technique is Q-learning [64]. As shown
+in Fig. 4, an agent regularly updates its achieved rewards based
+on the taken action at a given state. The future total reward (i.e.,
+the Q-value) of performing an action at at a given state st is
+computed using where r(st, at) denotes the immediate reward of performing
+an action at at a given state st, and 纬 is the learning rate
+that determines how fast learning occurs (usually set to value
+between 0 and 1). This algorithm can be easily implemented
+in a distributed architecture like WSNs, where each node seeks
+to choose actions that are expected to maximize its long term
+rewards. It is important to note that Q-learning has been extensively
+and efficiently used in WSN routing problem (e.g.,
+[65]鈥揫68]).There exist many examples of machine learning based solutions
+to various resource management problems in the cloud.
+In this subsection, we will discuss several such solutions with
+varying objectives. It is important to note that although these
+solutions were not explicitly designed for energy efficiency,
+some of them may reduce energy consumption as a side effect.
+Liao et al. [14] used machine learning to find the best
+configuration for memory prefetchers. They employed a variety
+of algorithms including nearest neighbor, naive Bayes,
+C4.5 decision tree, Ripper, support vector machines, logistic
+regression, multi-layer perceptron, and radial basis function.
+Bodik et al. [15] applied statistical machine learning models,
+such as linear and LOESS regression, to optimal control for
+data centers.
+Predicting how much time and resources will be spent by
+applications is necessary to be able to schedule jobs efficiently.
+Matsunaga and Fortes [16] viewed this as a supervised machine
+learning problem and extended the Predicting Query
+Runtime algorithm [17] to the regression problem, calling
+their modified method PQR2. Using Weka, they compared
+PQR2 to a group of machine learning algorithms including knearest
+neighbors, linear regression, decision tree, radial basis
+function, and support vector machine. They showed that PQR2
+offers the best accuracy among these algorithms. In another
+work on web applications, Jiang et al. [18] combined machine
+learning (linear regression) with time series analysis to predict
+the number of requests and decide whether to increase or
+decrease the number of active VMs.
+Islam et al. [19] utilized error correction neural network
+and linear regression along with sliding window to predict
+resource usage patterns in the cloud. They evaluated prediction
+accuracy using data generated by running TPC-W [20] on
+Amazon EC2 and demonstrated the effectiveness of their
+approach. They also tried different sliding window sizes and
+concluded that neural network with optimal sliding window
+size performs better than linear regression. Gong et al. [21]
+developed another system called PRESS that predicts cloud
+resource demands to perform elastic resource scaling using
+statistical machine learning methods. Bankole and Ajila [22]
+evaluated their resource demand prediction models built using
+support vector machine, neural network and linear regression.
+They concluded that SVM attains the best results in terms of
+response time and throughput.
+Maximizing profits is a crucial goal for cloud providers. To
+this end, Xiong et al. [23] proposed SmartSLA, a resource
+management system that consolidates multiple VMs into a
+single physical machine to reduce costs while complying with
+tenant SLAs. Machine learning comes into play in learning a
+model describing how different resource allocations to clients
+correspond to potential profits. After this, the module responsible
+for resource allocation uses the learned model to adjust
+allocations and maximize profits. The authors realized that
+simple linear regression was unsatisfactory for their objectives,
+so they turned to the regression tree model and added a
+boosting approach called additive regression to decrease the
+prediction error.
+Several researchers applied reinforcement learning to resource
+allocation and management in the cloud. Xu et al. [24]
+took a unified reinforcement learning approach to determine
+the optimal configurations for VMs in a cloud computing
+environment. Dutreilh et al. [25] integrated reinforcement
+learning solutions in an automated controller for the cloud.
+Their workflow presented three key components for tuning the
+model: Q-function initialization, convergence speedups, and
+performance model change detection.
+Barrett et al. [26] proposed a parallel Q-learning approach
+to reduce the amount of time required to zero in on the
+optimal resource scaling policy during online learning. The
+authors stated that their approach was the first application of
+parallelized reinforcement learning to improving convergence
+times. Their evaluation which used multiple learning agents
+(varying from 2 to 10) showed that parallelization was able
+to provide meaningful reduction in convergence times. Rao et
+al. [27] viewed cloud resource management as a task suitable
+for distributed learning, and utilized reinforcement learning to
+develop a mechanism where each VM acts as an autonomous
+agent in the learning process.
+Kundu et al. [28] applied refinements to artificial neural
+network and support vector machine algorithms to model
+the relationship between application performance and the
+resources allocated to the VM hosting the application. They
+argue that their results are significantly better than those provided
+by non-refined machine learning methods or regression
+approaches. Huang et al. [29] employ support vector regression
+technique in conjunction with a genetic algorithm to reduce
+application service response times in the cloud.
+Virtual network (VN) embedding [30] is closely related
+to cloud resource management. In data centers, the substrate
+network in the data center network, and incoming VN requests
+must be met with efficient resource allocations. Mijumbi et al.
+[31] design a reinforcement learning algorithm to perform substrate
+resource management. Their main objective is increasing
+VN acceptance ratio, i.e, the fraction of incoming VN requests
+that are successfully answered.
+In this section, we review a number of machine learningbased
+proposals for enabling energy efficiency in cloud computing
+environments.
+There are many factors influencing energy consumption in
+data centers such as power distribution, the heat produced
+by data center operations and resulting cooling costs, and
+the management of computing load [32]. Most of the current
+solutions offered for energy efficiency in data centers focus on
+optimally distributing the computing load so that the minimum
+number of machines will be activated to satisfy application
+demands.
+Vasic et al. [33] proposed DejaVu, a resource management
+system for the cloud that learns from the results of
+previous resource allocations. The learning phase of DejaVu
+takes about a week of service use when workloads and their
+corresponding resource allocations are identified. In actual use,
+DejaVu automatically classifies each a workload to check if it
+matches a previously encountered workload. Depending on the
+classification result, it either reuses the previous allocation, or
+orders the service to reconfigure itself. The authors argued that
+their efficient mechanism for adapting to new workloads would
+result in lowered energy costs as it allows load consolidation.
+Demand forecasting is a key problem in data center management,
+and good forecasting techniques can lead to optimal allocation
+strategies that minimize energy consumption. Prevost
+et al. [34] utilized neural network and auto-regressive linear
+prediction to forecast future demand profiles. Performance
+results of a multi-layer perceptron model and a linear autoregressive
+predictor were compared. The authors concluded
+that the linear predictor was able to produce a more accurate
+model. Similarly, Duy et al. [35] turn to a neural network
+based predictor for load forecasting in the cloud. They used the
+results of the forecast to turn off unused servers and conserve
+energy. Using historical demand data to train their system,
+the authors were able to demonstrate that their scheduling
+algorithm was able to save over 40% energy.
+Dabbagh et al. [36] developed another framework for predicting
+future virtual machine requests and associated resource
+requirements. This framework uses this predictor to reduce
+energy consumption by putting unneeded machines into sleep
+mode. The techniques used are k-means for clustering, and
+stochastic Wiener filter for workload prediction. Using Google
+traces collected over 29 days, the authors showed that their
+framework achieved near-optimal energy efficiency.
+A few solutions go beyond this simple objective of activating
+the minimum number of physical machines. Chen et
+al. [32] considered power distribution and cooling in deciding
+where to place the computing load. They used a model-based
+reinforcement learning approach to learn the thermal distribution
+resulting from different workload placements, and then
+predict the thermal distribution of incoming workloads under
+various placement alternatives in order to pick the optimal
+one. The authors called their method spatially-aware workload
+management (SpAWM), and deployed it using VMWare鈥檚
+ESXServer virtualization infrastructure. They used the Python-
+Based Reinforcement Learning, Artificial Intelligence and
+Neural Network Library (PyBrain) [37] to implement their
+online algorithm, which combines neural networks and reinforcement
+learning Evaluation results showed a 2 鈭� 3鈼
+decrease in temperature, which led to saving 13% 鈭� 18%
+cooling energy.
+Machine learning methods can be used as complementary
+tools in building holistic solutions to energy efficiency in the
+cloud. Berral et al. [38], [39] employed supervised machine
+learning methods to predict resource consumption by different
+tasks and SLA-related metrics such as response time for a
+given workload, and integrated their predictor in a system that
+performs power-aware task scheduling and consolidation. The
+algorithms they used were linear regression to predict CPU
+usage at each host, and a more complex machine learning algorithm
+called M5P to predict power consumption. Experiments
+were carried out using real workloads, and demonstrated that
+their methods offered substantial power savings while slightly
+decreasing performance.
+Certain solutions in the literature apply machine learning
+at the level of individual servers in the data center. Tesauro
+et al. [40] presented a reinforcement learning approach to
+simultaneously manage performance and power consumption
+by intelligently adjusting CPU frequency online. Their approach
+is tunable in that it uses a simple objective function
+that subtracts power consumption multiplied by a modifiable
+coefficient from a performance-based utility. They employed
+the Sarsa(0) update rule, and trained a multilayer perceptron
+neural network. Their paper detailed some specific innovations
+in applying reinforcement learning and justified their use
+through experimental evaluation.
+In another work, Tesauro et al. [41] proposed a hybrid reinforcement
+learning approach supported with neural networks,
+this time for enabling intelligent server allocation decisions.
+By combining the flexibility of reinforcement learning, which
+does not require explicit models, and the ability of modelbased
+policies to quickly reach high performance, they were
+able to attain successful results while avoiding the potential
+performance problems associated with online reinforcement
+learning.Applied to the QoE-QoS relationship modelling, Machine
+Learning (ML) methods use a set of observations reflecting the
+network state and the user鈥檚 perception, in order to extract
+inference rules to predict automatically the QoE value. To deal
+with this modelling problem, it is necessary to select the
+appropriate learning type. In the following, we define the main
+learning types focusing on the ones that suit the QoE-QoS
+relationship modelling.
+The inference rules construction can be carried out in a
+deductive or inductive manner. In deductive learning, the
+particular rules are deducted from the general rules. In contrast,
+with inductive learning, the general rules are drawn from the
+particular cases observation. In the current paradigm, ML is
+considered to be the induction science [3]. The purpose of
+learning methods is to find patterns from a collection of
+specific observations so as to make predictions about the QoE
+for upcoming events.
+The goal of ML is to model an unknown target concept
+from observations. Depending on the nature of these
+observations, three types of learning can be identified [4] [5]:

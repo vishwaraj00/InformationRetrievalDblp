@@ -1,0 +1,532 @@
+Fuzzy Logic 
+natural language
+logic programming
+Language Resource
+Automated Planning and Control
+ Brain-Computer Interfaces
+ Computational Neuroscience
+Computational Biology
+Intelligent Interaction
+Machine Learning
+Natural Language Processing
+Robotics 
+Computational Linguistic
+information theory
+neurology
+Logic
+Classifiers and statistical learning methods
+Neural networks
+Deep neural networks
+Artificial
+Intelligence
+robotic
+Machine learning
+Multiagent system
+Natural language processing 
+Neuron
+Belief network
+artificial intelligence
+learning systems
+robot
+ANN
+Bayesian
+fuzzy
+autonomous intelligent agent
+goal-based 
+learning
+Reinforcement learning
+pattern recognition
+computational learning theory
+computational statistics
+unsupervised learning
+supervised learning
+Reinforcement learning
+classification
+ regression
+ clustering
+ Density estimation
+ Dimensionality reduction
+ Decision tree learning
+ Association rule learning
+ Artificial neural networks
+ Deep Learning
+ Inductive logic programming
+ Support vector machines
+ Clustering
+ Bayesian networks
+ Representation learning
+ Manifold learning
+ Similarity and metric learning
+ Sparse dictionary learning
+ Genetic algorithms
+ Hopfield networks
+ Boltzmann machines
+ Gaussian process regression
+ Inductive logic programming
+ Lazy learning
+ Learning Automata
+Learning Vector Quantization
+Logistic Model Tree
+Fisher's linear discriminant
+Logistic regression
+Multinomial logistic regression
+Naive Bayes classifier
+Perceptron
+Support vector machines
+k-nearest neighbor
+Naive Bayes
+Vector Quantization
+Self-organizing map
+Apriori algorithm
+Eclat algorithm
+FP-growth algorithm
+Single-linkage clustering
+Conceptual clustering
+Fuzzy clustering
+OPTICS algorithm
+Generative models
+Low-density separation
+Graph-based methods
+Co-training
+Temporal difference learning
+Q-learning
+Learning Automata
+Deep belief networks
+Deep Boltzmann machines
+Deep Convolutional neural networks
+Deep Recurrent neural networks
+Hierarchical temporal memory
+perceptron algorithm
+Linear regression
+Nearest neighbor
+Temporal difference learning
+TD learning
+learning algorithm
+supervised learning
+unsupervised learning
+data analysis
+Curve fitting
+Estimation Theory
+Forecasting
+Fraction of variance unexplained
+Function approximation
+Generalized linear models
+Kriging 
+Local regression
+Modifiable areal unit problem
+Multivariate adaptive regression splines
+Multivariate normal distribution
+Pearson product-moment correlation coefficient
+Prediction interval
+Regression validation
+Robust regression
+Segmented regression
+Signal processing
+Stepwise regression
+Trend estimation
+Anomaly detection
+Structured prediction
+K-means 
+Balanced clustering
+Clustering high-dimensional data
+Conceptual clustering
+Consensus clustering
+Constrained clustering
+Data stream clustering
+HCS clustering
+Sequence clustering
+Spectral clustering
+Dimension reduction
+Artificial neural network 
+Nearest neighbor search
+Neighbourhood components analysis
+Latent class analysis
+Fixed-radius near neighbors
+Nearest neighbor distance ratio
+Bayesian procedures
+Binary and multiclass classification
+Frequentist procedures
+Probit regression
+Logistic regression
+Support vector machines
+Linear classifiers
+Fisher's linear discriminant
+Logistic regression
+Naive Bayes classifier
+Perceptron
+Support vector machines
+Least squares support vector machines
+Quadratic classifiers
+Kernel estimation
+k-nearest neighbor
+Boosting (meta-algorithm)
+Decision trees
+Random forests
+Neural networks
+Learning vector quantization
+probability distribution
+Early studies using argumentation inspired methods in AI contexts can be found in the work of Birnbaum, Flowers,
+and McGuire, [42] in which a structural model of argument embracing notions of support and attack within a graphtheoretic
+base comprising propositional forms, is applied to textual reasoning; and Alvarado and Dyer’s approaches,
+[4,5], to the analysis of editorial presentation.
+Undoubtedly, the important early motivations that brought argumentation theory into use in AI arose from the
+issues of reasoning and explanation in the presence of incomplete and uncertain information. The failings of classical
+propositional logic as a means to address these had been delineated in the influential work of Reiter [165], and, a
+pressing concern of work throughout most of the 1980s and early 1990s was to build on the proliferation of treatments
+of non-monotonic logics within AI. This state is succinctly summarised by [57, pp. 337–338].
+Within AI, several non-monotonic reasoning formalisms emerged . . . In these formalisms, conclusions drawn may
+be later withdrawn when additional information is obtained. Formal logics of argument emerged as one style of
+formalising non-monotonic reasoning. The literature on non-monotonic reasoning dominated AI’s journals in the
+mid 1980s. Thus argumentation was initially adopted as a possible supporting approach with which to effect a formal treatment
+of non-monotonic reasoning, rather than as a paradigm whose study might be of independent interest in itself. The
+engagement of philosophers and legal theorists with reasoning and argumentation in AI marked a key stage in the
+move towards computationally grounded models of argument. Particularly notable is the impact of Pollock’s work
+on defeasible reasoning and justification: originally promoted in specialist philosophical literature, e.g. [146–148] its
+relevance and significance to AI was recognised following Pollock’s dissemination of these ideas in [149–151].
+In parallel with this development of the formal logical theory—in which context the significance of argumentation
+techniques with respect to non-classical logic was further emphasised in the contributions of Simari and Loui [173]
+and Brewka [44] (ideas in the latter being subsequently developed in [45])—the early 1990s saw important uses of
+argumentation techniques in the computational treatment of legal reasoning: notably in Rissland and Ashley’s treatment
+of legal argumentation from Case Law, [14,167,174] and its later extension by Aleven [3]; Prakken’s analyses in
+[152]; Sartor’s models of legal reasoning as described in [169,170]; the use of argumentation techniques in explaining
+complex legislation from Bench-Capon, Coenen, and Orton [29], etc.
+The technical treatment evident in AI contributions to non-monotonic logics and the argumentation-based methodologies
+offered in the field of legal reasoning found some degree of common ground in the exploitation of logic
+programming paradigms and knowledge-based systems. It was in this context, building on argument-based treatments
+of “negation-as-failure” of Kakas, Kowalski, and Toni [108], together with Eshghi and Kowalski’s work on abductive
+interpretation [89], that the watershed contribution of Dung [72,73] appeared: the model of argumentation described
+in [73] is now recognised as providing an important bridge between argumentation theory as a supporting analytic
+tool for non-monotonic reasoning and the independent exploitation of argumentation models in wider AI contexts.
+Two important ideas are put forward and expanded in [73]: The reduction of argumentation about a given issue to a completely abstract setting consisting of a set of “atomic”
+arguments, X, and a binary relation over these, A ⊆ X × X, with x,y ∈ A interpreted as “the argument x
+attacks the argument y”.
+(B) The proposal that intuitive notions of “collection of justified arguments” can be formally described by that of
+extension-based semantics: that is, through various properties of subsets, S of X within an argumentation framework
+(AF), The effect of (A) is that neither the structure of an argument nor the nature and semantics underpinning “x attacks y”
+need explicit consideration within the abstract framework. Thus an “argument”, x,may be a simple atomic proposition,
+p; or a (defeasible) rule, e.g. p←q ∧r; or an instantiation of a richer, more particular, perhaps even domain specific,
+argument scheme. That x attacks y may be on account of reasons varying in form from “x promotes a claim logically
+equivalent to the negation of that promoted by y”, e.g. x : p and y : ¬ p; or “x promotes a claim incompatible
+with the premises supporting the claim in y”, e.g. x : ¬p and y : q ←p ∧ r, and so on to the extent that “attacks”
+disputing the applicability of a given inference scheme and more complex structures are represented entirely abstractly
+in a single binary relation.
+Dung’s introduction of various extension-based semantics has, as we shall discuss in Section 3.1, had a profound
+influence on subsequent analyses of the concept of “collection of justified arguments”. In extremely informal terms, an
+extension semantics, E, can be thought of as describing properties that a subset of arguments within a given framework
+must satisfy in order to be deemed collectively justified, i.e. E : X,A × 2X → {
+,⊥}. Dung demonstrates how
+different choices of E may be used to colour varying degrees of an argument’s “acceptability” ranging from very liberal
+(so-called credulous) conditions through to extremely restrictive (so-called sceptical) requirements. The elements of
+Dung’s original set-theoretic semantics are reviewed in a number of articles in this issue and for further technical
+exposition we direct the reader to the article in this volume by Baroni and Giacomin [22].
+The past 5–7 years have witnessed an intensive study of mechanisms with the common aim of developing Dung’s
+ideas in various directions. For a detailed comparative critique of abstract argumentation techniques we refer the
+reader to the valuable perspective provided by Vreeswijk [182]. Subsequent work [43] of Dung in conjunction with Bondarenko, Kowalski and Toni, makes explicit the link between
+abstract argumentation and uniform treatment of non-classical logics. The Assumption-based frameworks (ABF)
+of [43] consider deductive theories—L,R—(with L a formal language such as the language of well-formed propositional
+sentences, and R a (countable) set of inference rules) augmented by a triple T,Ab,
+− in which T ⊆ L is a
+set of beliefs, Ab ⊆ L a (non-empty) set of assumptions and −: Ab→L maps assumptions to their contrary in L.4
+Such frameworks are shown to be applicable as a generic approach to describing a wide range of non-classical logics5
+including: Reiter’s Default Logic [165], Moore’s Autoepistemic Logic [131], logic programming, and divers other
+non-monotonic reasoning formalisms.
+While ABF structures may on first inspection seem unrelated to the abstract argumentation frameworks of [73],
+these can be presented as AFs by building the attack relation from the “contrary” mapping. A fuller overview of this
+approach may be found in, e.g. the paper of Dung et al. in this volume [76, Section 2.2]. One feature of importance in
+this abstraction of ABFs is that the resulting structure will typically describe an infinite graph. Informally, extensionbased
+semantics for ABFs are introduced as subsets of Ab whose union with the belief set T constitute a consistent
+theory. Fuller technical descriptions may be found in [43, pp. 70–71]. Such links between abstract argumentation
+frameworks and the deductive bases underpinning assumption-based schemes bring two powerful analytic approaches
+to bear in algorithmic studies of extension-based semantics for argumentation: combinatorial and algorithmic graph
+theory have been usefully applied in the former case; whereas technology developed for deductive reasoning and
+formal logic has provided insight into the latter. We expand on such computational and algorithmic issues in Section
+3.1. Cognitive radio (CR) is an enabling technology for
+numerous new capabilities such as dynamic spectrum access,
+spectrum markets, and self-organizing networks. To realize this
+diverse set of applications, CR researchers leverage a variety of
+artificial intelligence (AI) techniques. To help researchers better
+understand the practical implications of AI to their CR designs,
+this paper reviews several CR implementations that used the
+following AI techniques: artificial neural networks (ANNs), metaheuristic
+algorithms, hidden Markov models (HMMs), rule-based
+systems, ontology-based systems (OBSs), and case-based systems
+(CBSs). Factors that influence the choice of AI techniques, such as
+responsiveness, complexity, security, robustness, and stability, are
+discussed. To provide readers with amore concrete understanding,
+these factors are illustrated in an extended discussion of two CR
+designs. Awareness, reasoning, and learning are the basic components
+of a CR discussed in this paper. Despite various definitions
+of these terms, in this paper, awareness refers to the process
+of extracting the information regarding environment and radio
+itself for a specific purpose. Reasoning is defined as the process
+of finding an appropriate action in response to a particular situation
+with a system target (e.g., maximum operating lifetime,
+maximum robustness, and lowest cost communications) based
+on the user application quality-of-service (QoS) requirement
+[e.g., latency and bit error rate (BER)] and willingness to share
+resources and collaborate with other devices in the network.
+Learning is defined as the process of accumulating knowledge
+based on the observed impact upon applying the action. Typically,
+these processes complement each other to improve the
+operation of the CR process as a whole. In other words, awareness,
+reasoning, and learning in a CR interact and influence
+each other. Among these three, awareness is the starting point of
+a CR process and is the foundation of learning and reasoning.
+Learning can improve reasoning by enriching the knowledge
+or experience used in reasoning process. Powerful reasoning
+can improve the efficiency of learning by providing good examples
+for learning in return. This section presents some AI
+techniques that have been proposed throughout the literature as
+possible candidates for CR. They are presented in the order of
+historical development. The discussion on general AI and its
+applications is out of the scope of this paper, on which abundant
+information may be found in [20], which is the website
+provided by the Association for the Advancement of Artificial
+Intelligence. The first artificial neural was presented by the neurophysiologist
+W. McCulloch and the logician W. Pits in 1943 for the
+study of the human brain. The idea of artificial neural network
+(ANN) was then applied to computational models. Modeled on
+a nerve plexus, an ANN is nothing more than a set of nonlinear functions with adjustable parameters to give a desired output
+[21]. Different types of ANNs are separated by their network
+configurations and training methods, allowing for a multitude
+of applications. However, they are all comprised of neurons
+interconnected to form a network. Each artificial neuron usually
+produces a single output value by accumulating inputs from
+other neurons. While there are many types of ANNs available
+in the literature, only those most common and applicable to CR
+are presented here.
+1) MLPN: Multi-layer linear perceptron networks (MLPNs)
+are comprised of layers of neurons, each being a linear combination
+of the previous layer’s outputs. Generally, the weights for
+the linear combination are randomly chosen before training and
+can be updated using several methods such as back propagation
+(BP) [21], a genetic algorithm (GA), or combinations of methods.
+The performance of such training algorithms is dependent
+upon the size of the network and its application. Hybrid training
+methods can be used to extract the best features from each, such
+as pretraining a network with a GA and then refining the output
+using BP.
+2) NPN: By introducing nonlinearity into the network
+through perhaps squaring the inputs, or cross-multiplying two
+inputs, the network can be customized to fit the sample set.
+Although multilayer nonlinear perceptron networks (NPNs)
+can provide highly flexible and dynamic results, their network
+configuration must often reflect the data that they represent.
+Furthermore, BP for training the weights in the neurons may
+be slow to converge, requiring significant processing time to
+achieve precise results [21].
+3) RBFN: Similar to NPN, radial basis function networks
+(RBFNs) have a built-in distance criterion with respect to a
+center (a radial nonlinear function) in its hidden layer. This
+transformation has the advantage of preventing the network
+from settling into local minimals, which is a common problem
+with perceptron networks. The function itself is usually
+Gaussian, but Euclidean distance and others have also been
+used [21]. Training is often implemented with the gradient
+descent method.
+4) Application of ANN to CRs: Because of their ability to
+dynamically adapt and be trained at any time, ANNs are able
+to “learn” patterns, features, and attributes of the system they
+describe. The term “learn” refers to the fact that the neurons are
+stored in computer memory, the outputs of which can systematically
+be adjusted to yield a new result for a new situation and
+remember the results. The attributes can be highly nonlinear,
+complex, and numerous, yet ANNs can be constructed by only
+a few examples, thus reducing the complexity of the solution.
+For this reason, they have long been used to describe functions,
+processes, or classes that are otherwise difficult to analytically
+formulate. Therefore, ANNs can be used not only to classify
+or recognize received stimuli but to assist in the solution
+adaptation process as well.
+The ANN has been adopted in spectrum sensing for CR
+[22]–[24]. In [22], Fehske et al. develop an ANN-based signal
+classifier utilizing the extracted cyclostationary signal features.
+The combination of cyclostationary analysis and ANN provides
+efficient and reliable signal classification and reduces the online
+processing time by performing a significant amount of computation offline. In [23], Cattoni et al. use the ANN to
+classify different IEEE 802.11 signals (the complementary
+code keying signal and the orthogonal frequency-division multiplexing
+signal) based on the frequency features. In [24],
+Zhu et al. evaluate an ANN-based spectrum sensing algorithm
+for wireless mesh networks. The simulation results show that
+the ANN-based algorithm achieves better performance in accuracy
+and speed than the Bayesian-based algorithm.
+The ANN has also been used for radio parameter adaptation
+in CR [25]–[27]. In [25], Reed et al. develop a CR testbed
+using Tektronix test equipment as RF hardware and a personal
+computer running Open Source SCA Implementation (OSSIE
+[28], [29]) for different waveforms. The ANN determines radio
+parameters for given channel states with three optimization
+goals, including meeting the BER, maximizing the throughput,
+and minimizing the transmit power. In [26], Hasegawa et al.
+propose an ANN-based distributed optimization algorithm for
+large-scale cognitive wireless clouds, which consists of many
+heterogeneous terminals and networks.
+Baldo and Zorzi propose to use the ANN to characterize the
+real-time achievable communication performance in CR [30].
+Since the characterization is based on runtime measurement,
+it provides certain learning capability that can be exploited
+by the CE. The simulation results demonstrate good modeling
+accuracy and flexibility in various applications and scenarios.
+In addition, the ANN has been used for pattern classification
+in a pattern-based transmission for CR [31], [32], where the
+transmission bit string is mapped to a signal pattern at the
+transmitter, and the received pattern is classified and mapped
+back to a bit string at the receiver using the ANN. Metaheuristic Algorithms 
+Explicit relations between the parameters of a CR and the
+desired performance metrics are usually not available. Therefore,
+search algorithms based on mathematical relations cannot
+be applied to find the optimal parameters with respect to the
+performance metrics. Instead, metaheuristic algorithms [33]
+can be applied to computationally hard problems to search
+through the solution space while learning and establishing the
+requisite relationships. Although the term “metaheuristic” was
+probably first mentioned in 1986 [34], it can be traced back to
+earlier work on stochastic optimization methods in the 1950s [35]. Several selected metaheuristic algorithms are presented
+here, and their relative merits are summarized in Table I.
+1) Evolutionary Algorithms/GAs: GAs [36], which are a
+particular class of evolutionary algorithms, draw their inspiration
+from genetic evolution and natural selection of species in
+nature.
+The definitions of chromosomes and fitness functions are
+fundamental to the description of a GA. Chromosomes are
+abstract representations of candidate solutions. A fitness function,
+which is closely correlated with the objective of the
+algorithm or optimization process, quantifies the desirability
+of the solution. Candidate solutions are evaluated on the basis
+of the values they generate for the fitness function (called
+fitness levels), which characterize the performance of candidate
+solutions. An ideal fitness function should lend itself to fast
+computation, since it takes several evaluations to produce a
+single generation and several generations to produce a useful
+result. A GA maintains a population of candidate solutions for
+a given problem. The fitness of the population is evaluated,
+and multiple individuals (based on fitness levels) are selected to
+form a new population by “reproduction” (combination of candidate
+solutions) and “mutation” (incorporation of some new
+solution trait to the current solution). This new population then
+becomes the current population for the next iteration (or generation).
+In this process, “unfit” elements eventually die out and
+are replaced by solution offspring with increased fitness levels.
+2) SA: Simulated annealing (SA) [37] is a simple approach
+for global optimization in a large search space. SA is motivated
+by the annealing process in metallurgy: a process involving
+controlled slow cooling of a heated melt to reduce or remove
+defects and achieve perfect crystallization of the material.
+At each step, the SA algorithm considers some neighbors of
+the current state s and probabilistically decides to either move
+the system to state s or stay in state s. The probabilities are
+chosen so that the system ultimately tends to move to states of
+lower energy. Typically, this step is repeated until the system
+reaches a state that is good enough for the application or until a
+given computation budget has been exhausted. The local search
+space size is usually a function of the current energy level
+or, sometimes, the time from start. This way, the algorithm
+initially wanders in a broad area of the search space containing
+good solutions, ignoring small features of the energy function,
+and as it moves toward lower energy regions, the search space
+becomes narrower and narrower. 3) TS: Tabu search (TS) [38] enhances the performance of
+a search method by using a memory structure.
+The basic elements of TS are memory structures called Tabu
+list. The list ensures that a recent move is not repeated or
+reversed. TS uses memory in different ways to guide the search
+procedure and the role of memory can change as the search
+proceeds. When the search procedure is in some region with
+more acceptable solutions, it might be more advantageous to
+intensify or focus the search. Such intensification can be carried
+out by prioritizing solutions that have common features with the
+current solution. This can be done with the introduction of an
+additional term in the objective function that penalizes solutions
+far from the present one. At other times, it might be useful to
+spread the exploration space of the search algorithm, and this
+can be done by diversification. As before, diversification can
+be achieved by introducing an additional term in the objective
+function that penalizes solutions that are close to the present solution.
+Dynamic weights are attached to the intensification and
+diversification terms such that intensification and diversification
+phases alternate during the search.
+4) ACO: Ant colony optimization (ACO) [39] is inspired by
+the behavior of ants in finding shortest paths from their colonies
+to food sources.
+Ants initially randomly wander and, upon finding food, return
+to their colony while laying down pheromone trails. Upon
+finding a pheromone trail, other ants follow this trail rather than
+randomly wandering. Thus, a successful pheromone trail (a
+trail that leads to food) is continually reinforced. Furthermore,
+the pheromone trail starts to evaporate over time. Hence, the
+pheromone trail is more attractive if the time taken to travel the
+path is shorter as this gives the pheromone lesser time to evaporate.
+The ants are thus successful in finding the shortest path to
+a food source. ACO mimics this ant behavior with “simulated
+ants” walking around a graph representing the problem to solve
+and finding locally productive areas. ACO algorithms search in
+parallel over several constructive computational threads based
+on local problem data and a dynamic memory structure containing
+information on the quality of the previously obtained result.
+These algorithms thus combine a priori information about the
+structure of a promising solution with a posteriori information
+about the structure of previously obtained good solutions.
+5) Application of Metaheuristic Algorithms to CR: The
+metaheuristic techniques presented here can not only be used
+for reasoning or finding the optimal solution with objective/
+utility function but can also be used for learning with the aid
+of training examples when the relationship between parameters
+and a desired performance measure is not well understood. The
+objective of learning is to identify a hypothesis or a rule set
+from the search space that maximizes the fit of the training
+examples to the target concept or, in other words, to identify a
+hypothesis set or a set of rules that is consistent with the training
+examples. Although the characteristics of each search algorithm
+are different, as can be seen in Table I, a common challenge in
+the application of metaheuristic techniques is the formulation
+of extensive examples for target scenarios.
+Among the various metaheuristic algorithms, the GA has
+been widely adopted to solve multiobjective optimization
+problem and dynamically configure the CR in response to the changing wireless environment [14], [40]–[46]. In [14],
+Rondeau et al. apply the GA to adapt the radio parameters of an
+SDR to the changing radio environment. In their implementation,
+the fitness function dynamically links and weights different
+objects according to the link conditions and user-application
+requirements. In [40], Newman et al. design a GA-based CE to
+control the radio parameters for single-carrier and multicarrier
+transceivers. This paper derives a set of fitness functions to
+guide the search direction of the GA and investigate the tradeoff
+between the convergence time and the size of the GA search
+space. In [41], Hauris uses the GA to adapt the parameters of
+CRs on autonomous vehicles. These autonomous vehicles form
+a geographically varying dynamic wireless network for communication
+and information sharing among the vehicles and the
+base station (BS). In [42], Park et al. validate the applicability
+of GA-based radio parameter adaptation for the cdma2000
+forward link in a realistic scenario with Rician fading. In [43],
+Thilakawardana and Moessner investigate a GA-based cellby-
+cell dynamic spectrum-allocation scheme achieving better
+spectral efficiency than the fixed spectrum-allocation scheme.
+A new solution-encoding technique is proposed to reduce the
+GA convergence time. In [44], Kim et al. implement a software
+testbed for CR with the spectrum-sensing capability and a GAbased
+CE to optimize radio parameters for dynamic spectrum
+access (DSA).  The hidden Markov model (HMM) was first introduced in
+the late 1960s. It is a convenient and mathematically tractable
+statistical model to describe and analyze the dynamic behavior
+of a complex random phenomenon [47] that can be modeled as
+a Markov process with observable and unobservable states. The
+HMM generates sequences of observation symbols by making
+transitions from state to state, one symbol per transition. However,
+the states are hidden, and only the output is observable.
+In general, a real-world process can be expressed as a random
+process producing a sequence of observation symbols or patterns
+with hidden parameters generating the observables. The
+symbols or patterns may be discrete or continuous depending
+on the specific processes. In a rule-based system (RBS), rules are extracted from a
+specific application area (automatically or manually) and used
+in decision making for that domain. It is a natural way of
+encoding a human expert’s knowledge in a narrow area into an
+automated system. The idea of RBS was used in the development
+of DENDRAL: one of the oldest expert systems, which
+was developed in 1964. A typical RBS consists of the following
+fundamental elements [53]. The case-based system (CBS) can trace its roots to the work
+of Schank on the model’s of dynamic memory in the early
+1980s. It is an AI area that focuses on using previous similar
+experiences or cases to guide the problem-solving process and
+to obtain a solution [69].

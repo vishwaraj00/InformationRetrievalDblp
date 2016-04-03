@@ -1,0 +1,535 @@
+Unified Modeling Language
+UML
+object-oriented
+Class diagram
+Component diagram
+JAVA
+C#
+software engineer
+development
+maintenance
+testing
+evaluation
+programmer
+software developer
+computer programmer
+Software design
+Requirements engineering
+debugging
+debug
+usability
+Software Process
+Source Code
+Project Management
+Object Oriented Design 
+Reliability
+Software Development
+Unit Testing
+graphical user interface
+GUI
+Specification
+Planning
+waterfall
+prototype
+implementation
+verification
+maintenance
+spiral
+Agile Unified Process
+Rational Unified Process
+Object-oriented programming
+Prototyping
+Incremental development
+Rapid application development
+Computer Aided Software Engineering
+API
+Manifesto
+Extreme Programming
+Agile Modeling
+Agile Unified Process
+SDLC
+Systems development life cycle
+Performance
+Testing
+Rapid Application Development
+Object Oriented Programming
+End-user development
+Open Source Development
+tool
+C++
+Flowchart
+J2EE
+J2ME
+J2SE
+Pascal
+FORTRAN
+COBOL
+Eclipse
+Kdevelop
+NetBeans
+Ruby
+Python
+PHP
+Software quality assurance
+JVM
+Test-driven development
+Refactoring
+Toolkit
+Delphi
+.NET
+XCode
+Erlang
+VB.NET
+Recorder
+Software Engineering research makes use
+of collections of software artifacts (corpora) to derive empirical
+evidence from. Goal: To improve quality and reproducibility
+of research, we need to understand the characteristics of used
+corpora. Method: For that, we perform a literature survey using
+grounded theory. We analyze the latest proceedings of seven
+relevant conferences. Results:While almost all papers use corpora
+of some kind with the common case of collections of source code of
+open-source Java projects, there are no frequently used projects
+or corpora across all the papers. For some conferences we can
+detect recurrences. We discover several forms of requirements
+and applied tunings for corpora which indicate more specific
+needs of research efforts. Conclusion: Our survey feeds into a
+quantitative basis for discussing the current state of empirical
+research in software engineering, thereby enabling ultimately
+improvement of research quality specifically in terms of use (and
+reuse) of empirical evidence. This is a survey on software engineering research with
+focus on the use of collections of software artifacts (corpora)
+to derive empirical evidence from. Such focus on corpora
+was triggered by our own research on specifically software
+reverse/re-engineering and program comprehension, e.g., studies
+on API or language usage [1], [2], [3], [4]—with the
+common use of corpora for validation in the broader sense.
+The survey applies to conferences that fit with this context.
+One can observe a diversity of involved methodologies and
+characteristics of the collections of empirical evidence as they
+are leveraged in SE research. Thus, we embarked on the
+present literature survey with the following central research
+questions:
+I How often do Software Engineering papers use corpora—
+collections of empirical evidence?
+II What is the nature and characteristics of the used corpora?
+III Does common contents occur in the used corpora?
+For this, we collected and analyzed the latest proceedings1
+of the following conferences: European Conference on Software
+Maintenance and Reengineering (CSMR), International
+Symposium on Empirical Software Engineering and Measurement
+(ESEM), International Conference on Program Comprehension
+(ICPC), International Conference on Software Maintenance
+(ICSM), Working Conference on Mining Software
+Repositories (MSR), Working Conference on Source Code
+Analysis and Manipulation (SCAM), Working Conference on Reverse Engineering (WCRE). We choose these conferences
+because i) they cover software engineering topics that, based
+on our experience, we expect to make use of empirical
+evidence; ii) they cover ground related to our expertise and
+research focus on software reverse/re-engineering and program
+comprehension with ESEM as notable addition for broader
+coverage of empirical software engineering research; iii) the
+conferences are of comparable size. In our survey, we use
+only long papers. We choose to analyze only conference
+proceedings, because while journal articles may adhere to the
+best practices, conference proceedings arguably contain the
+most common practices of research in the community—and
+we are interested in the latter. SE research has been surveyed before; see Table I for
+a summary. The cited surveys focus on specific forms or
+characteristics of SE research to be analyzed with a predefined
+schema. For instance, Kitchenham et al. surveyed SE journals
+and conferences to find out adoption rate of systematic literature
+reviews [8]. Similarly, Sjøberg et al. sought to find and
+analyze existing controlled experiments in SE research [6].
+By contrast, we (first to our knowledge) seek to discover
+whatever empirical evidence is used to facilitate SE research
+and we allow our coding schema to emerge from the data.
+We follow the idea of Grounded Theory (GT) as understood
+by Glaser [9] (on the difference between Straussarian and
+Glaserian versions see [10]). Empirical research is usually perceived as taking one of
+the forms: controlled and quasi-experiments, exploratory and
+confirmatory case studies, survey, ethnography, and action
+research [11], [12]. In a broader sense, empirical research also
+includes any research based on collected evidence—quoting
+from [11]: “Empirical research seeks to explore, describe,
+predict, and explain natural, social, or cognitive phenomena by
+using evidence based on observation or experience. It involves
+obtaining and interpreting evidence by, e.g., experimentation,
+systematic observation, interviews or surveys, or by the careful
+examination of documents or artifacts [emphasis added].”
+Since Software Engineering is a practical area of Computer
+Science, it is logical to expect that most of the SE
+research is evidence-based, i.e., empirical de facto and in the present study, we submit to substantiate this expectation. We
+believe that a bottom-up approach of observing what exists
+and discovering methodology as well as definitions of forms
+of research complements the prominent top-down approach,
+when a methodology is derived from theoretical considerations
+or by borrowing from other sciences (medicine, sociology,
+psychology).
+This survey is particularly concerned with (collections of)
+empirical evidence. Thus, the following questions guide the
+research:
+I How often do Software Engineering papers use corpora—
+collections of empirical evidence?
+II What is the nature and characteristics of the used corpora?
+III Does common contents occur in the used corpora?
+For that, we collected the papers from the latest edition
+of seven SE conferences: CSMR, ESEM, ICPC, ICSM, MSR,
+SCAM, and WCRE (see Table II for details). We used DBLP
+pages of conferences to identify long papers and downloaded
+them from digital libraries. While we were interested primarily in characteristics of
+used empirical evidence (specifically corpora), we also extracted
+additional information about research reported in the
+papers: used tools, signs of rigorousness/quality, etc. We put
+the collected information in several groups:
+1) Corpora: We captured what was used as study objects
+(e.g., projects), what are their characteristics (e.g., language,
+open- vs. closed-source, code form), what are the requirements
+to the study objects, do they come from a specific source (e.g.,
+established dataset or online repository), were they observed
+over a time (e.g., versions or revisions), what is the nature of
+preparation of the corpus.
+2) Forms of empirical research: During coding, several
+structural forms evolved that we used for capturing information
+conveyed in papers: experiments, questionnaires, literature
+surveys, and comparisons. Some relationships between forms
+and corpora usage also emerged.
+3) Self-classification: For each paper we captured what
+words authors use to describe their effort: e.g., case study,
+experiment.
+4) Tools: We collected mentions of existing tools (e.g.,
+Eclipse, R, Weka) that were used as well as of introduced
+tools that were presented in the papers. (In many cases, these
+tools are used to analyze or to otherwise process corpora.)
+5) Structural signs of rigorousness/quality: We paid attention
+to the following aspects of the study presentation: Do
+authors use research questions? Null hypotheses? Is there a
+section on definitions and terms? Is validation mentioned? Is
+there a “Threats to validity” section? Are threats addressed in
+any structured way?
+6) Reproducibility: We tried to understand in each case,
+if a study can be reproduced. (Obviously, the use of corpora
+affects the definition of reproducibility.) We paid attention to
+the following signs: Are all details provided for a possible
+study replication (i.e., versions of used projects, time periods,
+etc.)? Do authors provide any material used in the paper, e.g.,
+on a supplementary website? Altogether, would it be possible
+to reproduce the study?
+7) Assessment: Finally, we characterized the process of
+coding: how easy it was to extract information and how
+confident we are in the result. Size. Half of the corpora, 99 cases, have three or less
+projects (of them, 45 corpora consist of only one project).
+There are 24 corpora that contain more than 10 projects.
+We detected large corpora (with more than 100 projects)
+in 8 papers—one of them introducing an established dataset
+itself. Languages. Most of the corpora are monolingual (147
+cases); most of the remaining ones are bilingual (19 cases).
+As for the software language, 106 corpora contain projects
+written in Java, while C-like languages are used in 50 corpora
+(in C-like languages we include C, C++, C#).
+Code form. In 125 cases, corpora consist of source code;
+in 15 cases—of binaries. In the rest of the cases, code of the
+projects is not used, something else is in focus (developers,
+requirements, etc.) Access. In 128 cases, corpora consist only of open-source
+projects; in 12 cases, corpora consist only of projects not
+available publicly (e.g., industrial software); in 9 cases, corpora
+are self-written. The remaining cases mix access forms.
+Projects. We collected names of the used projects as they
+are provided by the papers (modulo merging of names like
+Vuze/Azureus5). 3) Evolution: We encountered 52 papers that use evolution
+of the projects in their research, meaning that they operate
+on several versions, releases, etc. To describe the evolution
+measure, the following terms were used: “version” (21 times),
+“revision” (11), “commit” (10), “release” (11).
+On the average, papers mentioning commits use 3,292 commits;
+papers with revisions—18,870 revisions; with versions—
+10 versions; with releases—10 releases.
+There are 46 papers that mention a time span of their study.
+In 36 cases, the unit of the time span is a year and on the
+average such papers are concerned with a 8-year span.
+We found 23 papers to mention what version control
+system was involved in the study. CVS is mentioned 11
+times, SVN—11 times, Git and Mercurial—4 and 2 times
+respectively. 4) Requirements: We collected requirements to the corpora:
+explicit as well as implicit. For instance, an implicit
+requirement for a bug tracking system is inferred if the paper
+uses bug reports of the projects under investigation. The most
+popular direction of requirements is the presence of some
+‘ecosystem’ (found in 37 papers): existence of bug tracking
+systems, mailing lists, documentation (e.g., user manuals).
+Another popular requirement, found in 25 papers, has to do
+with the size of the projects: small, sufficient, large, or of
+particular size (as specific as “medium of the sizes of the ten
+most popular Sourceforge projects”), or the need of diversity
+of sizes. In 23 papers, it was stated that the used projects were
+chosen because they were used in previous work (of the same
+or other authors). Language-related requirement was present
+in 22 papers for a specific language or for the diversity of
+languages in a corpus. In 14 papers, the choice of projects
+was attributed to either diversity of application domains or
+to a specific domain. Some aspect of the used projects was
+mentioned as essential in 14 papers: active or wide-spread
+usage, popularity, well-known and established software. Other
+popular requirements include presence of development history
+(15 papers), dependencies (11 papers), or tests (10 papers). Tuning: We captured what kind of action is applied to a
+corpus during research. In 20 papers, sources or binaries were
+modified by instrumentation, faults/clones injection, adjusting
+identifiers, etc. In 15 papers, tests needed to be run against the
+corpus either to verify made modifications or to collect the
+data. In 10 papers, the corpora had to be executed in order
+to perform the needed analysis or to collect data. In 6 papers,
+some filtering of the contents of the corpus was needed to,
+e.g., identify main source code/main part of the project. Independently of the self-classification of the papers, we
+noted structural characteristics of research performed in the
+papers. We did not use any theoretical definition for what
+to consider a questionnaire or an experiment. The developed
+definitions are structural, composed of the characteristics that Study presentation aspects: A clear set of definitions
+for the terms used in the paper is found in 25 papers.
+Research questions are adopted in 83 papers. In 22 papers, a
+“Goal-Question-Metric” approach is used. Explicit mention of
+null hypothesis or hypotheses is found in 23 papers. Section
+“Threats to validity” is present in 111 papers; of them, 75
+discuss threats using classification described, e.g., in [24]:
+threats to external (mentioned in 73 papers), internal (59
+papers), construct (53 papers), and conclusion (26 papers)
+validity. Validation: We captured the mentions of performed
+validation of done research. We have found evidence of some
+kind of validation in 88 papers. In 50 cases, validation was
+manually performed: either the results are small enough, or a
+sufficient subset is checked. In 27 cases, validation was done
+against existing or prepared results: actual data (when evaluating
+predictions), data from previous work, or an oracle/gold
+standard. In 8 cases, cross-validation was used. Reproducibility
+We looked for signs of additionally provided data for
+a replication of the study. Since it is usually done via the
+Internet, we searched the papers for (the stems of) the following
+keywords: “available,” “download,” “upload,” “reproduce,”
+“replicate,” “host,”, “URL,” “website,” “http,” “html”. In such
+manner, we have found links in 61 papers. In 6 cases, we could
+not find any mentioned material, tools or data,—links led to a
+general page or to a homepage, which we searched thoroughly
+but without success. In 3 more cases, we have found replication
+material on the website after some searching. As to the nature of the provided data, in 25 cases, an
+introduced tool or tooling used in the research is provided. In
+15 cases, the used corpus—in full or partially—is provided;
+the complete description of the corpus (list of used projects
+with their versions and/or links) is provided by 6 papers. Raw
+data is available for 14 papers; the same number of papers
+provide final or/and additional results of the study.
+When the corpus is not provided by the paper, but the
+names of the used projects are mentioned, the main aspect of
+being able to reproduce the corpus is knowing which versions
+of the projects were used.We noticed that in 21 papers versions
+of the used projects are not provided. In 67 papers, versions
+of the projects are mentioned explicitly; in 26 more cases, it
+is possible to reconstruct the version from the mentioned time
+periods that the study spans.
+Altogether, we judged 29 papers to be reproducible, meaning
+that either all components were provided by the authors or
+we concluded that the paper contains enough details to collect
+exactly the same corpus and the same tools. We did not judge
+if it is possible to follow the provided instructions, specific to
+the reported research. Assessment
+Though usually information we extracted from the papers
+was scattered across different sections, half of the papers had 1) Choice of the papers: We did not use journal articles—
+while they might provide more information or be of higher
+quality, we wanted to capture the state of the common research,
+of which we believe conference proceedings to be more
+representative. We have chosen conferences with proceedings
+of similar and reasonable size: so that not to skew the general
+results by one larger conference and so that to include all
+the papers but still be able to process them within reasonable
+period of time. Specifically, we excluded the ICSE conference,
+which had 87 long papers in the proceedings of 2012 edition.
+Altogether, this means our results might not be generalizable,
+but we believe them to be representative enough.
+2) Choice of the period: Since we perform a snapshot
+study, it might be that some of the discovered numbers are
+a coincidental spike. A longitudinal study—possible future
+work—may provide more details and deeper understanding.
+3) Coding: The effort was manual with occasional search
+by specific keywords (mentioned in the appropriate subsections
+of Section III). In 5 cases, papers were OCR-scanned.
+Human factor. Coding was done by one researcher, but the
+results of the first pass were cross-validated during the second
+pass as well as during the aggregation phase. When in doubt,
+the researcher constantly referred back to the surveyed papers
+to double-check.
+Scheme. We do not claim our coding scheme to be
+complete or advanced. We captured basic data related to the
+used empirical evidence, often either obvious or structurally
+supported. Therefore, we might miss sophisticated or underspecified
+forms of empirical research. Software Engineering Process and Life-Cycle Model
+Based on Product Line
+Essentially, software engineering environment based on
+product line is a kind of product line which similar to the
+automatic production line of modern manufacturing
+industry. It is also a new software engineering method and
+process to carry out mass customization production of
+software products in specific domain based on standard
+component of core resources such as software architecture,
+component, connecting piece, production plan,
+specification, constraint, documents and so on. Therefore,
+what the most important for research on the product line
+software development environment is to set up software
+development process model and life-cycle model which
+suitable for the characteristics and the production methods
+of product line. It is used to describe the whole process of
+products development based on product line
+systematically, and then take this as a guide to determine
+the message-based application, tool configuration and
+production process.
+Its goal is to describe the sequence of activities,
+workflow, the task framework, product submission and
+standards of software engineering process based on
+product line completely, clearly and specifically. And the
+guidelines to action and behavioral norms to implement
+the software product line engineering and software
+products would be the prerequisite and an important
+foundation for the research on the integrated software
+development environment. In recent years, there have
+been some preliminary research results on the research of
+product line engineering process model. For example:
+software product line double life cycle model and SEI
+model[2]. But there simple models can hardly meet the
+requirement of the whole process expressing ability of
+modern software management system, mode of producing,
+evolution of e-Learning, quality control and so on, such as
+the Multi-level upper and lower layer organization and
+management system of international, national, industry,
+domains and application and so on which owned by
+product line project, the engineering process
+characteristics and mode of multi-level iterative
+production methods and the evolution of
+multi-dimensional product.[5-6].
+On the research and creation of the product line
+engineering process models and life-cycle, we firstly
+propose a kind of opened "N-life cycle model" suitable for
+software engineer based on product line. This model
+contain the whole process of product line software
+engineer, each operational phase division of inter
+process ,the customization of task framework, product
+quality standards, the entire process of monitoring the
+completion steps, management and technical
+characteristics completely. Compared with product line
+double life cycle model, SEI model and so on,
+N-life-cycle model, an open process model, which use for
+reference of the modern industry process and management
+system and has been proved to be more features and manage spatial of modern industry, meet the product line
+software project process modeling and expression
+ability[7]. It is almost blank for the real product of integrated
+software engineering environment based on product line,
+which is the source language of American CMU/SEI
+expert. But the study of integrated environment model is a
+quite active research direction in the software engineering
+field with the development of software technology. The
+research emphasis is to construct the architecture,
+framework and model of integrated environment, so as to
+its integration mechanism and implementations. At
+present, the sanctioned integrated reference models is
+3-dimensional model based on network distributed
+computing environment, which is equal to interface, tools
+and data integration. But limited in the traditional
+software engineering methodology, it is common software
+development environment and disposable and zero
+starting point software product develop. and this
+environment model cannot get enough to the "architecture
++ component +component assembly" software
+development methods and production capacity based on
+product line, which is also the main basis why the
+CMU/SEI evaluation product line development
+environment is almost blank[8-9]. Except having the low
+level and source code development ability of traditional
+software engineering environment, integrated software
+engineering environment model based on product line
+should also provide the basic characteristics of
+"territoriality, abstractness, publicity, expansibility,
+variability and reusability" possessed by core resource
+such as architecture and component, as so as system-level
+components automated assembly capacity possessed by
+product family mass customized production. This is the
+essential difference between product line software
+development environment and traditional software
+development environment, and it is also the key issues
+and primary target that must be solved and achieved by
+integrated software engineering environment based on
+product line. In the process of research and established integrated
+software engineering environment model based on
+product line, the product line software engineering
+environment model, which has the open property and
+layered architecture, must be designed at the basis of
+unified conceptual product line engineering model,
+unified large granularity reusable core resource data
+model, unified component composition production
+behavior model, the unified routing model of mutually
+iterative of core resource development and software
+products production. At the light of layered architecture,
+the environment models can be divided into three part of
+interface layer, tool layer and data layer in sequence.
+Interface layer, which is used to receive user information
+and request and implement the tool transferring and the
+return of result data, is to carry out interface integration
+and management; tool layer, which is used to provide the
+service for interface layer and realize data access and Product Line Core Assets Database System and
+Environment Database Platform Framework and Realization Mechanism of ISEEBPL It is key to research and establish multi-dimension
+integrated environment model and multi-level
+environment architecture in the design and realization of
+product line integrated development environment overall
+framework. Multi-dimension is that software production
+should support the iterative, evolution and constraint of
+product line management project, enterprise product line
+project, domain engineering, application engineering and
+different stage of each engineering process in the two
+dimensions of vertically and horizontally. Multi-level is
+macroscopic level division of integrated environment, that
+is, take the software product line core assets component as
+the bus and middleware, its above is product line software
+engineering environment and should support high-level
+and software production based on system-level
+component assembly, for below, it could support the
+design and development of low-level and manual
+encoding method based source code program. All these
+indicate that the software development environment that
+based on product line must have the automated and
+industrialization productivity to carry out high-level and
+system-level component assembly technology, at the same
+time, it has the ability of low-level and source code grade
+manual codes development component resource program,
+which is its multi level and the essential difference
+between product line and traditional software
+development environment, which is called double
+environment integration. the management and development tools that satisfying the
+needs of the task in each stage in the light of the model
+regulations and requirement. and then implementing the
+layer-by-layer integration of interface, tools and data
+according to integrated environment model. Interface
+layer implement the integration and management of
+interface, its role is to receive users information and
+request and to carry out tools call and user feedback and
+submission of result data or products according to the
+production process of software product line. The tool
+layer is to implement the integration and management of UML based approaches One the most widespread approach is AUML
+[Bauer et al., 2001], a project aiming at bringing agent concepts into
+UML [OMG, 2000c]. As a suggestion, readers should start by [Odell
+et al., 2000] since it is one of the first papers about AUML. One of
+the relevant results of AUML is protocol diagrams notation, which is
+being considered as a new notation for the standard UML to express
+concurrence and decision. [AUML Team, 03] is AUML web site. It contains
+working documents and articles about applying AUML to model
+different aspects of a MAS [Bauer et al., 2001] [Odell et al., 2001]. Unfortunately,
+there are no support tools for AUML.
+A Process for Agents Societies Specification and Implementation (PASSI)
+[CSAI LAB, 03] is recent work that reuses UML tools as front-end. It
+applies a UML representation of elements belonging to an architecture
+for a better understanding and handling. Concretely, Rational Rose
+is supplemented with a customized plugin that provides PASSI extra
+functionality. As an example of PASSI modelling, readers can consult
+[Burrafato and Cossentino, 2002] that shows modelling of a book store
+company. In this line of research, something similar has been proposed
+in [Bergenti and Poggi, 2001]. It is a framework and a programming
+language that facilitates the definition of planning capabilities of agents.
+This approach inputs an XMI [OMG, 03] description of UML diagrams
+to generate code directly to a target agent platform. XMI is a model
+driven XML Integration framework for defining, interchanging, manipulating
+and integrating XML data and objects. As it is a standard (issued
+by OMG), any UML compliant tool should be valid as front-end.

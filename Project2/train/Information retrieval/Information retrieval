@@ -1,0 +1,534 @@
+ information
+ metadata
+ information overload
+Fall-out
+F-score 
+F-measure
+Average precision
+Precision at K
+R-Precision
+Mean average precision
+Discounted cumulative gain
+Other measures
+Visualization
+Information access 
+Information architecture
+Information management
+Information retrieval
+Information seeking
+Information society
+Knowledge organization
+text documents
+Standard Boolean model
+Extended Boolean model
+Fuzzy retrieval
+intersection
+cardinality
+integral
+summation
+symmetric difference
+Adversarial information retrieval
+Collaborative information seeking
+Controlled vocabulary
+Cross-language information retrieval
+Data mining
+European Summer School in Information Retrieval
+Human–computer information retrieval 
+Information extraction
+Information Retrieval Facility
+Knowledge visualization
+Multimedia Information Retrieval
+Personal information management
+ Boolean retrieval
+ Scoring
+ Vector space classification
+ web 
+ search
+ score
+ dictionary
+ Web crawling
+ Vector space classification
+ indexing
+ Bi-word
+ Stemming
+ lemmatization
+ k-gram
+ wildcard
+ Inverse document
+ tf-idf weighting
+ flat
+ clustering
+ similar
+ Ranking
+ Vocabulary
+ relevance 
+ feedback
+ pruning
+ spelling
+ Blocked sort-based indexing
+ Heap
+ Zipf
+ Tokenization
+ token
+ ranked
+ rank
+ Relevance
+ posting
+ stop words
+ stemming
+ folding
+ unfiltered
+ filter
+Extensible Markup Language
+XML
+dictionary
+Boolean retrieval
+    The term vocabulary and postings lists
+    Dictionaries and tolerant retrieval
+    Index construction
+    Index 	
+    Scoring, term weighting and the vector space model
+    Computing scores in a complete search system
+    Evaluation in information retrieval
+    Relevance feedback and query expansion
+    XML retrieval
+    Probabilistic information retrieval
+    Language models for information retrieval
+    Text 	 and Naive Bayes
+    Vector space classification
+    Support vector machines and machine learning on documents
+    Flat clustering
+    Hierarchical clustering
+    Matrix decompositions and latent semantic indexing
+    Web search basics
+    Web crawling and indexes
+    Link analysis
+The Information Age ushers in unparalleled possibilities and
+convenience to information retrieval (IR) users along with unparalleled challenges for
+IR researchers and developers. For example, many prognosticators predict no halt
+to the information explosion in the near future. Yet, while users theoretically have a
+vast amount of information at their fingertips, the accuracy of some IR systems leaves
+some users frustrated and IR researchers forever working to improve their systems.
+We begin this survey of modern linear algebra-based IR methods from a historical
+perspective.
+There are various IR methods in use today, ranging from Boolean to probabilistic
+to vector space models. Of these, vector space models incorporate the most linear
+algebra. The prevailing vector space method for small document collections is latent
+semantic indexing (LSI) [24]. The 1999 SIAM Review article by Berry, Drmaˇc, and
+Jessup gives an excellent introduction and survey of vector space models, especially
+LSI [3]. LSI uses the singular value decomposition (SVD) of the term-by-document
+matrix to capture latent semantic associations. LSI became famous for its ability
+to effectively handle generally troublesome query terms involving polysems and synonyms.
+The SVD enables LSI methods to inherently (and almost magically) cluster
+documents and terms into concepts. For example, the synonyms car, automobile,
+and vehicle may be grouped into the same cluster, while the polysem bank may be
+divided according to its various meanings (financial institution, steep slope, billiards
+shot, etc.). However, the discriminating power of LSI, derived from the SVD, is
+the reason for its limitation to smaller document collections. The computation and
+storage of the SVD of the term-by-document matrix is costly. Consider that this
+term-by-document matrix has as many columns as there are documents in a particular
+collection. A huge collection like the World Wide Web’s webpages is dramatically
+out of LSI’s scope.
+It is not just the enormity of the Web that leaves traditional well-tested and
+successful methods, like LSI, behind, but it is also the Web’s other peculiarities
+that make it an especially challenging document collection to analyze. The documents
+on the Web are not subjected to an editorial review process. Therefore, the
+Web contains redundant documents, broken links, and some very poor quality documents.
+The Web also is subject to frequent updates as pages are modified and/or
+added to or deleted from the Web on an almost continual basis. The Web’s volatility
+leaves IR researchers with two choices: either incorporate updates and downdates
+on a frequent, regular basis or make updates infrequently, trading accuracy
+for simplicity. The Web is also an interesting document collection in that some of
+its users, aiming to exploit the mercantile potential of the Web, intentionally try to
+deceive IR systems [43]. For example, there are papers instructing webpage authors
+on the methods for “increasing one’s ranking” on various IR systems [55]. Ideally,
+an IR system should be impervious to such spamming. The tendencies of Web users
+also present additional challenges to Web IR systems. Web users generally input
+very short queries, rarely make use of feedback to revise the search, seldom use
+any advanced features of the system, and almost always view only the top 10–20
+retrieved documents [4, 31]. Such user tendencies put high priority on the speed
+and accuracy of the IR system. The final feature, and most important for this paper,
+is the Web’s unique hyperlink structure. This inherent structure provides extra
+and, as will become clear later, very valuable information that can be exploited to
+improve IR methods.
+This hyperlink structure is exploited by three of the most frequently cited Web
+IR methods: HITS (Hypertext Induced Topic Search) [37], PageRank [13, 14], and
+SALSA [42]. HITS was developed in 1997 by Jon Kleinberg. Soon after, Sergey
+Brin and Larry Page developed their now famous PageRank method. SALSA was
+developed in 2000 in reaction to the pros and cons of HITS and PageRank.
+This paper is organized as follows. Sections 2–4 cover HITS and PageRank and
+their connections, followed by SALSA in section 5. Other Web IR methods are briefly
+overviewed in section 6, and section 7 contains predictions for the future of Web IR.
+Two Theses for Exploiting the Hyperlink Structure of theWeb
+Each page/
+document on the Web is represented as a node in a very large graph. The directed
+arcs connecting these nodes represent the hyperlinks between the documents. The
+graph of a sample Web is depicted in Figure 1.
+The HITS IR method defines authorities and hubs. An authority is a document
+with several inlinks, while a hub has several outlinks. See Figure 2.
+The HITS thesis is that good hubs point to good authorities and good authorities
+are pointed to by good hubs. HITS assigns both a hub score and an authority score
+to each webpage. For example, the higher the authority score of a particular page,
+the more authoritative that document is.
+On the other hand, PageRank uses the hyperlink structure of the Web to view
+inlinks into a page as a recommendation of that page from the author of the inlinking
+page. However, inlinks from good pages (highly revered authors) should carry much
+more weight than inlinks from marginal pages. Each webpage can be assigned an
+appropriate PageRank score, which measures the importance of that page. Figure 3
+depicts the PageRank thesis. The bold lines show the extra weight given to links from
+important pages.
+These are two very similar and related, yet distinct, ideas for ranking the usefulness
+of webpages. In the next few sections, we analyze these two IR methods in
+turn.
+HITS. We repeat the HITS thesis: good authorities are pointed to by good
+hubs and good hubs point to good authorities. Page i has both an authority score xi
+and a hub score yi. Let E be the set of all directed edges in the Web graph and let eij
+represent the directed edge from node i to node j. Given that each page has somehow
+been assigned an initial authority score x i and hub score y HITS successively
+The implementation of HITS involves two main
+steps. First, a neighborhood graph N related to the query terms is built. Second, the
+authority and hub scores for each document in N are computed and two ranked lists
+of the most authoritative documents and most “hubby” documents are presented to
+the IR user. Since the second step was described in the previous section, we focus on
+the first step. All documents containing references to the query terms are put into
+the neighborhood graph N. There are various ways to determine these documents.
+One simple method consults the inverted term-document file.
+We present a very small example to demonstrate the implementation
+of the HITS algorithm. First, a user presents query terms to the HITS
+IR system. There are several schemes that can be used to determine which nodes
+“contain” query terms. For instance, one could take nodes using at least one query
+term. Or to create a smaller sparse graph, one could take only nodes using all query
+terms.
+
+Alice wants to query a database but she does not want the database to learn what she is
+querying. She can ask for the entire database. Can she get her query answered with less
+communication? One model of this problem is Private Information Retrieval, henceforth PIR.
+We survey results obtained about the PIR model including partial answers to the following
+questions. (1) What if there are k non-communicating copies of the database but they are
+computationally unbounded? (2) What if there is only one copy of the database and it is
+computationally bounded?
+
+Information retrieval systems are often contrasted with relational databases.
+Traditionally, IR systems have retrieved information from unstructured text
+– by which we mean “raw” text without markup. Databases are designed
+for querying relational data: sets of records that have values for predefined
+attributes such as employee number, title and salary. There are fundamental
+differences between information retrieval and database systems in terms of
+retrievalmodel, data structures and query language as shown in Table 10.1.1
+Some highly structured text search problems are most efficiently handled
+by a relational database, for example, if the employee table contains an attribute
+for short textual job descriptions and you want to find all employees
+who are involved with invoicing. In this case, the SQL query
+
+However, many structured data sources containing text are best modeled
+as structured documents rather than relational data. We call the search over
+such structured documents structured retrieval. Queries in STRUCTURED structured retrieval
+RETRIEVAL can be either structured or unstructured, but we will assume in this chapter
+that the collection consists only of structured documents. Applications
+of structured retrieval include digital libraries, patent databases, blogs, text
+in which entities like persons and locations have been tagged (in a process
+called named entity tagging) and output from office suites like OpenOffice
+that save documents as marked up text. In all of these applications, we want
+to be able to run queries that combine textual criteria with structural criteria.
+Examples of such queries are give me a full-length article on fast fourier transforms
+(digital libraries), give me patents whose claims mention RSA public key encryption
+
+and that cite US patent 4,405,829 (patents), or give me articles about sightseeing
+tours of the Vatican and the Coliseum (entity-tagged text). These three queries
+are structured queries that cannot be answeredwell by an unranked retrieval
+system. As we argued in Example 1.1 (page 15) unranked retrieval models
+like the Boolean model suffer from low recall. For instance, an unranked
+system would return a potentially large number of articles that mention the
+Vatican, the Coliseum and sightseeing tours without ranking the ones that
+are most relevant for the query first. Most users are also notoriously bad at
+precisely stating structural constraints. For instance, users may not know
+for which structured elements the search system supports search. In our example,
+the user may be unsure whether to issue the query as sightseeing AND
+(COUNTRY:Vatican OR LANDMARK:Coliseum) , as sightseeing AND (STATE:Vatican OR
+BUILDING:Coliseum) or in some other form. Users may also be completely unfamiliar
+with structured search and advanced search interfaces or unwilling
+to use them. In this chapter, we look at how ranked retrievalmethods can be
+adapted to structured documents to address these problems.
+Information Scent, Information
+Retrieval, Clustering, Search engine
+Current search engines retrieve too many
+documents of which only a small fraction is relevant to
+a user query [11]. Now a day the web search engines
+provide the user-friendly interface by which user can
+issue queries that are simply a list of keywords. From a
+study of the log of a popular search engine in [7] it was
+concluded that most queries are short and imprecise.
+Due to ambiguity of query terms and short length of
+query, keywords of query could not determine the
+information need associated to the query. As a result
+many documents are retrieved which are not relevant
+to the input query and retrieval precision is degraded.
+In order to overcome this problem work has been done
+in [4] which improve the information retrieval
+precision by recommending set of similar queries in
+response to the input query and set of suggested
+queries are ranked according to the relevance criterion
+but it is realized that precision can be improved further
+if recommended queries are selected using the
+information need of past query sessions issued on the
+search engine. According to the information foraging
+theory the user is guided in the information
+environment by information scent. Users tend to click
+those retrieved pages in search results which match
+their information need and those pages have
+Information scent associated with it with respect to
+their information need. More the page is satisfying the
+information need of user, more will be the information
+scent associated to it. High Information Scent pages
+are more relevant than low scent pages with respect to
+the information need of the user. Information need of
+the query sessions is accessed not only from content
+but also from information scent of clicked page with
+respect to the information need of user which is not
+considered in [4]. In [10] concept of Information Scent
+is introduced in the field of information retrieval to
+improve the precision by improving the rank of those
+pages in result set which are relevant to the user
+information need. In this paper the Information scent is
+used to infer the information need of the query sessions
+using Information Scent of the clicked pages in the
+query sessions and related queries are recommended
+using the query sessions with the similar information
+need. Information Scent is used to infer the
+information need of the query session by identifying
+the high and low scent clicked documents as every
+document clicked by the user in the query session is
+not equally relevant to the information need of query
+session some clicked documents are more relevant to
+information need of query session than others which is
+captured through information scent. Information Scent
+is used to access the relevancy of the clicked page with
+respect to the information need of the user. The
+solution proposed in this paper is used to model the
+information need of the query sessions using
+information scent and content of clicked URLs in the
+sessions. Information Scent helps to infer the
+information need of the query session using the
+uniqueness of frequently clicked documents in the
+session associated with the query. Query sessions
+modeled using information scent and content of
+clicked URLs are clustered to generate clusters of
+query sessions where each cluster represent a unique
+information need. The input query is then used to
+select the clusters which closely represent the
+information need of the input query. The selected
+clusters contain set of queries similar in information
+need to be used as recommendation to the user. Web
+history of “Google” search engine keep track of
+queries and URLs selected by users when they are
+finding useful data through the search engines. The
+data is extracted from the web history and loaded into
+database which is preprocessed to find the query
+sessions. The query sessions modeled using
+Information Scent and content of clicked URLs are
+clustered to group the query sessions with similar
+information need. During online searching the queries
+are recommended in order of their relevancy with
+respect to the information need of input query.
+Recommended queries help the user to find the
+relevant documents which are closed to his needs and
+which he could not get from initial query issued. The
+recommended queries are those queries which are
+different from initial query in term of keywords used
+but they are satisfying the information need similar to
+initial query. This paper is organized as follows:
+Section 2 describes the Information Scent, Section 3
+explains the Clustering Query sessions with similar
+Information Need using Information Scent, Section 4
+gives the proposed algorithm for Improving the
+Information Retrieval precision using Related Queries
+with similar Information Need,
+Information Scent Metric
+
+Web search engines rely on Web crawlers for the retrieval
+of resources from the World-Wide Web. Collected resources
+are stored in repositories and processed to extract indices used
+for answering user queries. The situation is fundamentally
+different on the Grid: Grid entities are very diverse and can be
+accessed through different service protocols. Therefore, a Grid
+crawler following the analogy of its Web counterpart should be
+able to discover and lookup all Grid entities, “speaking” the
+corresponding protocols and transforming collected
+information under a common schema amenable to indexing.
+Web-page links represent implicit semantic relationships
+between interlinked Web pages. Search engines employ these
+relationships to improve the accuracy and relevance of their
+replies, especially when keyword-based searching produces
+very large numbers of “relevant” Web pages. Organizing
+information about Grid resources information in hierarchical
+directories implies the existence of parent-child relationships.
+Limited extensions to these relationships are provided with
+cross-hierarchy links (references). Relationships can be
+represented through the relational models proposed to describe
+Grid monitoring data.
+The basic paradigm supported by Search Engines to locate
+WWW resources is based on traditional information retrieval
+mechanisms, i.e., keyword-based search and simple boolean
+expressions. This functionality is supported by indices and
+dictionaries created and maintained at the back-end of a search
+engine with the help of information retrieval techniques. Given
+that the expected difficulty of queries ranges from that of very
+small enquiries to requests requiring complicated joins,
+intelligent-agent interfaces are required to help users formulate
+queries and the search engine to compute efficiently those
+queries. Of equal importance is the presentation of query
+results within a representative conceptual context of the Grid,
+so that users can navigate within the complex space of query
+results via simple interfaces and mechanisms of low cognitive
+load.
+The information retrieval systems deal with
+searching for documents or information within
+documents on 􀁘􀁖􀁈􀁕􀂶􀁖 request.
+One of the most common information retrieval
+information searching techniques is looking up the
+documents for keywords [1], [2]. The extracted text
+data is unstructured, meaningless and difficult to
+process by computer programs. Using this type of
+techniques the software agents face difficulties in
+understanding the semantic meaning of user queries
+and therefore poor values are obtained for system􀂶s
+precision and recall indicators [3].
+Another approach for the information retrieval
+research domain is to address the information retrieval
+challenges by adopting and using the Semantic Web
+techniques [4]. In these approaches two distinct steps
+can be identified: (i) semantic text refining, which
+transforms free text into an intermediate machineprocessable
+representation and (ii) semantic knowledge
+inferring using reasoning and learning algorithms. The
+machine-processable semantics, captured in a domain
+knowledge base, is further used as a support for
+intelligent searches that provide the most relevant
+results to user queries. These relevant results may
+represent documents, information and knowledge
+related to the semantics of the keywords specified in
+the queries.
+In the semantic text refining direction the research
+is concentrated on developing models and tools for
+capturing the semantic information in a domain
+knowledge base and semantically refining the
+documents using annotations. The OntoPop
+methodology [5] provides a single-step solution to (i)
+semantically annotate the content of documents and (ii)
+populate the ontology with the new concepts and
+instances found in the documents. The solution uses
+domain-specific knowledge acquisition rules which link
+the results obtained from the information extraction
+tools to the ontology elements, thus creating a more
+formal representation of the document content (RDF or
+OWL). The OntoPop methodology has certain
+limitations regarding solving synonyms on one hand
+and multiple instances with the same lexical
+representation on the other hand. SOBA is a system
+designed to create a soccer specific knowledge base
+from heterogeneous sources [6]. The system performs
+(i) automatic document retrieval from the Web, (ii)
+linguistic annotation and information extraction using
+the Heart-of-Gold approach [7] and (iii) mapping the
+annotated document parts on ontology elements. Ontea
+performs semi-automatic annotation using regular
+expressions combined with lemmatization and indexing
+mechanisms [8]. The methodology was implemented
+and tested on English and Slovak content.
+In the semantic knowledge inferring research
+direction, models and techniques based on reasoning
+and learning algorithms are proposed. The Ginseng
+approach [9] provides a natural language (NL)
+querying access to any knowledge base developed in
+the OWL language. The RACER reasoner (Renamed
+ABox and Concept Expression Reasoner) provides a
+query language nRQL (new Racer Query Language)
+that permits conjunctive queries with head projection
+operators, negation as failure and aggregation operators
+[10]. Pellet is an open source OWL DL reasoner which
+uses the SWRL language to describe first order query
+rules written in the form of an implication between an
+antecedent (body) and consequent (head) [11]. Both the
+antecedent and consequent consist of multiple atoms
+conjunctions. The use of reinforcement learning
+techniques to deduce new semantic knowledge
+information is proposed in [12], [13].
+Overall, the discussed approaches fail to consider
+the context in which the queries are made as relevant
+information for the information retrieval process. In
+this paper we overcome this problem and take the
+information retrieval researches one step further by
+proposing an information retrieval model that considers
+both the context and the semantic information in the
+query process aiming at the development of context
+based semantically enhanced information retrieval
+systems. To achieve our objective we have identified,
+defined and formalized three distinct types of context
+information relevant for an information retrieval
+system: knowledge context information, user context
+information and constraint context information. The
+context information is represented in an information
+system interpretable way by mapping it on our RAP
+context model [14]. The proposed information retrieval
+model is tested using the arhiNet system, our integrated
+information retrieval system for archive content, based
+on semantic enhancements [15].
+Content-based information retrieval has been studied in a
+variety o f f ields s uch as music [ 5], i mages [6, 7] and
+documents [8]. In this study, we focus on the documents data.
+For effective content-based document retrieval, it is necessary
+to model the data with a topic model such as Probabilistic
+Latent Semantic Indexing (pLSI) [9] or Latent Dirichlet
+Allocation (LDA) [10]. The Latent Dirichlet Allocation, a
+generative topic model, has become very popular and has been
+used in various fields. There have been some studies using
+topic modeling in the information retrieval domain, for
+example, a topic model for ad-hoc information retrieval using
+LDA (IR) [11, 12]. Considering good performance of LDA
+model in previous work, w e a lso s elect L DA as our topic
+model.
+
+Information Retrieval (IR) [1, 2] has been used in many
+computer science fields, and plays a significant role on the web
+[3] owing to the large number of data to retrieve. The
+conventional web services are provided with IR. Users can
+upload documents or presentation files along with the title and
+description. Accordingly, users can search the needed
+information by searching through the title or description of the
+content entered with IR [4]. However, its usability and
+effectiveness are limited in that users have to enter the exact
+keyword because it is searched only with the given title or
+description. Furthermore, the title or description may not
+always contain enough information for the user to search the
+necessary content. In order to solve this problem, it is needed to
+provide the actual content information as well as the title and
+description in IR systems.
+For this, in this paper, we propose a Fast and Effective
+Content based Document Information Retrieval system
+(CBDIR). The main advantages of our system are more flexible
+and more effective and faster retrieval of information. In
+perspective of flexibility, our system can easily communicate
+with widely used web platforms using the standard JSON
+format. We extract keywords from the actual content of a
+document using Latent Dirichlet Allocation (LDA) topic model.
+As a result, the search performance is improved compared to
+existing information retrieval systems. Our retrieval system is
+highly effective in that it uses actual contents as well as its title
+and description. Our system also provides users with required
+information in real-time at a faster retrieval speed by using
+inverted indexing and B-tree based indexing.
+
+For fast information retrieval, we need to construct the
+database schema efficiently. There are various indexing
+techniques for database schema. J. Zobel at al. [13] proposed
+inverted indexing schema for fast file access. E. Gabrilovich
+and S. Markovitch proposed explicit semantic analysis that
+represents texts from Wikipedia using inverted indexing [14].
+Brian F. D Comer discusses the variations of B-tree [15]. C
+Von der Weth et al. proposed the indexing technique for
+NoSQL [16]. Zhu Wei-ping at al. tried to use NoSQL database
+in order to replace with RDBMS [17]. These approaches help
+us construct a fast retrieval system. Our system selects NoSQL
+rather than Relational Database Management System
+(RDBMS) and adapts indexing schema and B-tree based
+indexing from these studies.

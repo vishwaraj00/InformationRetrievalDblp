@@ -1,0 +1,551 @@
+database management system 
+DBMS
+dataset
+SQL
+Structured Query Language
+relational database
+Entity Relationship Diagram
+Entity
+Attribute
+Cardinality
+query
+queries
+Relational model
+Object model
+XML database
+Semantic model
+DB
+query language
+Relation
+Primary key
+Foreign key
+Relation Schema
+Algebraic Query Language
+Relational Algebra
+Integrity
+First Normal Form
+Second Normal Form
+Third Normal Form
+Alternate key
+Candidate Key 
+Data Independence
+Data Dictionary 
+Data Query Language
+Database System
+Database Management System
+Degree
+Data Manipulation Language
+Function Dependency
+Tuple 
+Many-To-Many
+Normalization
+One-To-One
+One-To-Many
+Query Language
+Query Processor
+Composite  Key
+bitmap
+B-tree
+binary search tree
+ PostgreSQL
+ views
+ Object databases
+ object-relational databases
+ NoSQL 
+ NewSQL
+ Hash function
+ hierarchical database
+ table
+ object-relational mappings
+ graph database
+ network databases
+ Replication
+ Anomaly
+ Interrogation
+ Field
+ Deductive database systems are database management systems whose query language
+and (usually) storage structure are designed around a logical model of data.
+As relations are naturally thought of as the "value" of a logical predicate, and relational
+languages such as SQL are syntactic sugarings of a limited form of logical
+expression, it is easy to see deductive database systems as an advanced form of
+relational systems.
+Deductive systems are not the only class of systems with a claim to being an
+extension of relational systems. The deductive systems do, however, share with the
+relational systems the important property of being declarative, that is, of allowing
+the user to query or update by saying what he or she wants, rather than how to perform
+the operation. Declarativeness is now being recognized as an important driver
+of the success of relational systems. As a result, we see deductive database technology,
+and the declarativeness it engenders, infiltrating other branches of database
+systems, especially the object-oriented world, where it is becoming increasingly
+important to interface object-oriented and logical paradigms in so-called DOOD
+(Declarative and Object-Oriented Database) systems. The increased power of deductive
+languages, in comparison to conventional database query languages such
+as SQL, is important in a variety of application domains, including decision support,
+financial analysis, scientific modeling, various applications of transitive closure
+(e.g., bill-of-materials, path problems), language analysis, and parsing. (See [81] for
+a collection of articles on applications of deductive systems.) Deductive database
+systems are best suited for applications in which a large amount of data must be
+accessed and complex queries must be supported.
+In this survey, we look at the key technological advances that led to the successful
+implementation of deductive database systems. As with the relational systems
+earlier, many of the problems concern code optimization, the ability of the system
+to infer from the declarative statement of what is wanted an efficient plan for
+executing the query or other operations on the data. Another important thrust
+has been the problem of coping with negation or nonmonotonic reasoning, where
+classical logic does not offer, through the conventional means of logical deduction,
+an adequate definition of what some very natural logical statements "mean" to the
+programmer.
+This survey is not intended to be comprehensive; for example, we have not
+touched upon several important topics that have been explored actively in the
+literature, such as coupling existing Prolog and database systems, integrity constraint
+checking, parallel evaluation, theoretical results on complexity and decidability,
+many extensions of the Horn-clause paradigm (e.g., disjunctive databases,
+object-oriented data models), updates, collaborative answers, and many specialized
+approaches to evaluation of certain classes of programs (e.g., bounded recursion,
+"chain-like" queries, transitive-closure-related queries, semantic query optimization).
+Several interesting results have been obtained in these areas, but we have
+chosen to limit the focus of this paper. Articles on many of these topics can be
+found in [57]. The current crop of deductive systems drew inspiration from programming language
+research, in particular, logic programming systems such as Prolog. In a sense, deductive
+systems are an attempt to adapt Prolog, which has a "small-data" view of
+the world, to a "large-data" world. (Equally, one could think of deductive systems
+as an attempt to extend relational database systems; indeed, this is the more common
+view.) Prolog implementations have focused, as is typical for programming
+languages, on main-memory execution. There are two points to consider:
+• Prolog's depth-first evaluation strategy leads to infinite loops, even for positive
+programs and even in the absence of function symbols or arithmetic. In
+the presence of large volumes of data, operational reasoning is not desirable,
+and a higher premium is placed upon completeness and termination of the
+evaluation method.
+• In a typical database application, the amount of data is sufficiently large that
+much of it is oil secondary storage. Efficient access to these data is crucial to
+good performance. The first problem is adequately addressed by memoing extensions to Prolog
+evaluation. For example, one can efficiently extend the widely used Warren abstract
+machine Prolog architecture [133].
+The second problem turns out to be harder. The key to accessing disk data
+efficiently is to utilize the set-oriented nature of typical database operations, and to
+tailor both the clustering of data on disk and the management of buffers in order to
+minimize the number of pages fetched from disk. Prolog's tuple-at-a-time evaluation
+strategy severely curtails the implementor's ability to minimize disk accesses by
+reordering operations. The situation can thus be summarized as follows: Prolog
+systems evaluate logic programs efficiently in main-memory, but are tuple-at-a-time,
+and therefore inefficient with respect to disk accesses. In contrast, database systems
+implement only a nonrecursive subset of logic programs (essentially described by
+relational algebra), but do so efficiently with respect to disk accesses.
+The goal of deductive databases is to deal with a superset of relational algebra
+that includes support for recursion in a way that permits efficient handling of disk
+data. Evaluation strategies should retain Prolog's goal-directed flavor, but be more
+set-at-a-time. There are two aspects to set-orientation: Data, or facts, that are normally represented by a predicate with constant
+arguments (by a ground atom). For example, the fact parent (joe, sue), means
+that Sue is a parent of Joe. Here, parent is the name of a predicate, and this
+predicate is represented extensionally, that is, by storing in the database a
+relation of all the true tuples for this predicate. Thus, (joe, sue) would be
+one of the tuples in the stored relation.  Rules, or program, which are normally written in Prolog-style notation as
+This rule is read declaratively as "ql and q2 and ... and q,~ implies p." Each
+ofp (the head) and the qis (the subgoals of the body) are atomic formulas (also referred to as literals), consisting of a predicate applied to terms, which are
+either constants, variables, or function symbols applied to terms. Programs in
+which terms are either constants or variables are often referred to as Datalog
+programs. The data are often referred to as the EDB, and the rules as the
+IDB. 1 Following Prolog convention, we use names beginning with lowercase
+letters for predicates, function symbols, and constants, while variables
+are names beginning with an upper-case letter. In later sections, we also
+consider programs that contain features like negation and aggregation (e.g.,
+sum) operations applied to subgoals. Here, sg is a predicate ("same-generation"), and the head of each of the two
+rules is the atomic formula p(X, Y). X and Y are variables. The other predicates
+found in the rules are fiat, up, and down. These are presumably stored extensionally,
+while the relation for sg is intensional, that is, defined only by the rules. Intensional
+predicates play a role similar to views in conventional database systems, although
+we expect that in deductive applications, there will be large numbers of intensional
+predicates and rules defining them, far more than the number of views defined in
+typical database applications.
+The first rule can be interpreted as saying that individuals X and Y are at the
+same generation if they are related by the predicate fiat, that is, if there is a tuple
+(X, Y) in the relation for fiat. The second rule says that X and Y are also at the
+same generation if there are individuals U and V such that
+1. X and U are related by the up predicate
+2. U and V are at the same generation
+3. V and Y are related by the down predicate. 
+These rules thus define the notion of being at the same generation recursively.
+Since common implementations of SQL do not support general recursions such as
+this example without going to a host-language program, we see one of the important
+extensions of deductive systems: the ability to support declarative, recursive
+queries.
+The optimization of recursive queries has been an active research area, and has
+often focused on some important classes of recursion. We say that a predicate p
+depends upon a predicate q--not necessarily distinct from p~if some rule with p in
+the head has a subgoal whose predicate either is q or (recursively) depends on q. If
+p depends upon q and q depends upon p, p and q are said to be mutually recursive.
+A program is said to be linear recursive if each rule contains at most one subgoal
+whose predicate is mutually recursive with the head predicate. 2
+Perhaps the hardest problem in the implementation of deductive database systems
+is designing the query optimizer. While for nonrecursive rules, the optimization
+problem is similar to that of conventional relational optimization, the presence
+of recursive rules opens up a variety of new options and problems. There is an
+extensive literature on the subject, and we shall attempt here to give only the most
+basic ideas and motivation.
+3.1. Magic Sets
+The problem addressed by the magic-sets rule rewriting technique is that frequently
+a query asks not for the entire relation corresponding to an intensional predicate,
+but for a small subset. An example would be a query like sg (john, Z), that is, "who
+is at the same generation as John," asked of the predicate defined in Example 1. It
+is important that we answer this query by examining only the part of the database
+that involves individuals somehow connected to John.
+A top-down, or backward-chaining search would start from the query as a goal
+and use the rules from head to body to create more goals, and none of these goals
+would be irrelevant to the query, although some may cause us to explore paths
+that happen to "dead end" because data that would lead to a solution to the query
+happen not to be in the database. Prolog evaluation is the best known example
+of top-down evaluation. However, the Prolog algorithm, like all purely top-down
+approaches, suffers from some problems. It is prone to recursive loops, it may
+perform repeated computation of some subgoals, and it is often hard to tell that
+all solutions to the query goal have been found.
+On the other hand, a bottom-up or forward-chaining search, working from the
+bodies of the rules to the heads, would cause us to infer sg facts that would never
+even be considered in the top-down search. Yet, bottom-up evaluation is desirable
+because it avoids the problems of looping and repeated computation that are
+inherent in the top-down approach. Also, bottom-up approaches allow us to use
+set-at-a-time operations like relational joins, which may be made efficient for diskresident
+data, while the pure top-down methods use tuple-at-a-time operations.
+Magic-sets is a technique that allows us to rewrite the rules for each query form
+(i.e., which arguments of the predicate, are bound to constants, and which are
+variable), so that the advantages of top-down and bottom-up methods are combined.
+That is, we get the focus inherent in top-down evaluation combined with
+the looping-freedom, easy termination testing, and efficient evaluation of bottom-up
+evaluation. Magic-sets is a rule-rewriting technique. We shall not give the method,
+of which many variations are known and used in practice. [119] contains an explanation
+of the basic techniques, and the following example should suggest the
+idea.
+Other Rule-Rewriting Techniques There are a number of other approaches to optimization that sometimes yield better
+performance than magic-sets. These optimizations include the counting algorithm
+[7, 95, 14], the factoring optimization [71, 45], techniques for deleting redundant
+rules and literals [72, 99], techniques by which "existential" queries (queries
+for which a single answer--any answer suffices) can be optimized [83], and "envelopes"
+[107, 98]. A number of researchers [41, 135, 101, 84] have studied how
+to transform a program that contains nonlinear rules into an equivalent one that
+contains only linear rules. Iterative Fixpoint Evaluation
+Most rule-rewriting techniques like magic-sets expect implementation of the rewritten
+rules by a bottom-up technique, where starting with the facts in the database,
+we repeatedly evaluate the bodies of the rules with whatever facts are known (including
+facts for the intensional predicates) ancl infer what facts we can from the
+heads of the rules. This approach is called naive evaluation.
+We can improve the efficiency of this algorithm by a simple "trick." If in some
+round of the repeated evaluation of the bodies we discover a new fact f, then we
+umst have used, for at least one of the subgoals in the utilized rule, a fact that
+was discovered on the previous round. For if not, then f itself would have been
+discovered in a previous round. We may thus reorganize the substitution of facts
+for the subgoals so that at least one of the subgoals is replaced by a fact that was
+discovered in the previous round. The details of this algorithm are explained in
+[120]. Negation
+A deductive database query language can be enhanced by permitting negated subgoals
+in the bodies of rules. However, we lose an important property of our rules.
+When rules have the form introduced in Section 2, there is a unique minimal model
+of the rules and data. A model of a program is a set of facts such that for any rule,
+replacing body literals by facts in the model results in a head fact that is also in
+the model. Thus, in the context of a model, a rule can be understood as saying,
+essentially, "if the body is true, the head is true." A minimal model is a model such
+that no subset is a model. The existence of a unique minimal model, or least model,
+is clearly a fundamental and desirable property. Indeed, this least model is the one
+computed by naive or seminaive evaluation, as discussed in Section 3.3. Intuitively,
+we expect that the programmer had in mind the least model when he or site wrote
+the logic program. However, in the presence of negated literals, a program may not
+Set- Grouping and Aggregation
+The origins of deductive databases can be traced back to work in automated theorem
+proving and, later, logic programming. In interesting surveys of the early
+development of the field, Gallaire, Minker, and Nicolas [38, 58] suggest that Green
+and Raphael [36] were the first to recognize the connection between theorem proving
+and deduction in databases. They developed a series of question-answering
+systems that used a version of Robinson's resolution principle [90], demonstrating
+that deduction could be carried out systematically in a database context. 5
+Other early systems included MRPPS, SYNTEX, DEDUCE-2, and DADM.
+MRPPS was an interpretive system developed at Maryland by Minker's group from
+1970 through 1978 that explored several search procedures, indexing techniques,
+and semantic query optimization. One of the first papers on processing recursiw~'
+queries was [59]; it contained the first description of bounded recursive queries, which
+are recursive queries that can be replaced by nonreeursive equivalents. SYNTEX
+[73} was another early system for automatic deduction, and provided impetus for
+the organization of the Toulouse workshop (see below). DEDUCE was implemented
+at IBM in the mid-1970s [21], and supported left-linear recursive Horn-clause rules
+using a compiled approach. DADM [44] emphasized the distinction between EDB
+and IDB and studied the representation of the IDB in the form of "connection
+graphs"--closely related to Sickel's interconnectivity graphs [106]--to aid in the;
+development of query plans.
+A landmark workshop on logic and deductive databases was organized by Gallaire,
+Minker, and Nicolas at Toulouse in 1977, and several papers from the proceedings
+appeared in book form [33]. Reiter's influential paper on the closed world assumption
+(as well as a paper on compilation of rules) appeared in this book, as did Clark's
+paper on negation-as-failure and a paper by Nicolas and Yazdanian on checking integrity
+constraints. The workshop and the book brought together researchers in the
+area of logic and databases, and gave an identity to the field. (The workshop was
+also organized in subsequent years, with proceedings, and continued to influence
+the field.)
+In 1976, van Emden and Kowalski [123] showed that the least fixpoint of a Hornclause
+logic program coincided with its least Herbrand model. This provided a firm
+foundation for the semantics of logic programs, and especially, deductive databases
+since fixpoint computation is the operational semantics associated with deductive
+databases (at least, of those implemented using bottom-up evaluation).
+The early work focused largely on identifying suitable goals for the field, and on
+developing a semantics foundation. The next phase of development saw an increasing
+emphasis on the development of efficient query evaluation techniques. Henschen
+and Naqvi proposed one of the earliest efficient techniques for evaluating recursive
+queries in a database context [40]; earlier systems had used either resolution-based
+strategies not well suited to applications with large data sets, or relatively simple
+techniques (essentially equivalent to naive fixpoint evaluation [22, 105]). Ullman's
+paper on the implementation framework based on "capture rules" [11811 focused
+attention upon the challenges in efficient evaluation of recursive queries, and noted
+that issues such as nontermination had to be taken into account as well.
+The area of deductive databases, and in particular, recursive query processing,
+became very active in 1984 with the initiation of three major projects, two in the
+U.S.A. and one in Europe. The Nail! project at Stanford, the LDL project at
+MCC in Austin, and the deductive database project at ECRC all led to significant
+research contributions and the construction of prototype systems. The ECRC and
+LDL projects also represented the first major deductive database projects outside
+of universities. Although we do not address this issue, we note that the use of this
+emerging technology in real-world applications is also progressing (see, e.gl, [116],
+and recent workshops at ICLP, ILPS, and other conferences).
+1. Recursion. Most systems allow the rules to use general recursion. However, a
+new limit recursion to linear recursion or to restricted forms related to graph
+searching, such as transitive closure.
+2. Negation. Most systems allow negated subgoals in rules. When rules involve
+negation, there are normal many minimal fixpoints that could be interpreted
+as the meaning of the rules, and the system has to select from among these
+possibilities one model that is regarded as the intended model, against which
+queries will be answered. Section 4.1 discusses the principal approaches.
+3. Aggregation. A problem similar to negation comes up when aggregation (sum,
+average, etc.) is allowed in rules. More than one minimal model normally
+exists, and the system must select the appropriate model. See Section 4.2.
+1. Updates. Logical rules do not, in principle, involve updating of the database.
+However, most systems have some approach to specifying updates, either
+through special dictions in the rules or update facilities outside the rule system.
+We have identified systems that support updates in logical rules by a
+"Yes" in the table. (Some limitations as to the order of evaluation are usually
+enforced with respect to rules containing updates.)
+2. Integrity Constraints. Some deductive systems allow logical rules that serve as
+integrity constraints. That is, rather than defining IDB predicates, constraint
+rules express conditions that cannot be violated by the data.
+3. Optimizations. Deductive systems need to provide some optimization of
+queries. Common techniques include Magic-Sets or similar techniques for
+combining the benefits of both top-down and bottom-up processing, and seminaive
+evaluation for avoiding some redundant processing. A variety of other
+techniques are used by various systems, and we attempt to summarize the
+principal techniques here. Quotation marks around a method indicate that
+the method has not been defined in this survey, and the reader should look
+at the source paper.
+Storage. Most systems allow EDB relations to be stored on disk, but some
+also store IDB relations in secondary storage. Supporting disk-resident data
+efficiently is a significant task.
+Interfaces. Most systems connect to one or more other languages or systems.
+Some of these connections are embedding of calls to the deductive system in
+another language, while other connections allow other languages or systems to
+be invoked from the deductive system. We have not, however, distinguished
+the direction of the call in this brief summary. Some systems use external
+language interfaces to provide ways in which the system can be customized
+for different applications (e.g., by adding new data types, relation implementations,
+etc.). We refer to this capability as extensibility; it is very useful for
+large applications. With the development of the Internet and cloud
+computing, there need databases to be able to store
+and process big data effectively, demand for highperformance
+when reading and writing, so the
+traditional relational database is facing many new
+challenges. Especially in large scale and highconcurrency
+applications, such as search engines and
+SNS, using the relational database to store and query
+dynamic user data has appeared to be inadequate. In
+this case, NoSQL database created This paper
+describes the background, basic characteristics, data
+model of NoSQL. In addition, this paper classifies
+NoSQL databases according to the CAP theorem.
+Finally, the mainstream NoSQL databases are
+separately described in detail, and extract some
+properties to help enterprises to choose NoSQL.
+High concurrent of reading and writing with low
+latency
+Database were demand to meet the needs of high
+concurrent of reading and writing with low latency, at
+the same time, in order to greatly enhance customer
+satisfaction, database were demand to help applications
+reacting quickly enough.
+Efficient big data storage and access requirements
+Large applications, such as SNS and search engines,
+need database to meet the efficient data storage (PB
+level) and can respond to the needs of millions of
+traffic.
+ High scalability and high availability
+With the increasing number of concurrent requests
+and data, the database needs to be able to support easy
+expansion and upgrades, and ensure rapid
+uninterrupted service.
+Lower management and operational costs
+With the dramatic increase in data, database costs,
+including hardware costs, software costs and operating
+costs, have increased. Therefore, need lower costs to
+store big data.
+Although relational databases have occupied a high
+position in the data storage area, but when facing above
+requirements, it has some inherent limitations:
+Slow reading and writing
+A relational database itself has a certain logic
+complexity, with the data size increases, it is prone to
+bring about deadlocks and other concurrency issues,
+this has led to the rapid decline in the efficiency of
+reading and writing;
+Limited capacity
+Existing relational database cannot support big data
+in search engine, SNS or Big System;
+Expansion difficult Multi-table correlation mechanism which exists in
+relational database, became the major factor of
+database scalability
+To solve several needs above, a variety of new types
+of databases have appeared. In general, these new
+databases are very different with traditional relational
+databases, so it is referred to as "NoSQL" database.
+NoSQL also be interpreted as the abbreviation of
+"NOT ONLY SQL" to show the advantage of NoSQL.
+After the introduction of the background of NoSQL, we
+will focus on the advantages and disadvantages NoSQL
+database. Key-value data model means that a value
+corresponds to a Key, although the structure is simpler,
+the query speed is higher than relational database,
+support mass storage and high concurrency, etc., query
+and modify operations for data through the primary key
+were supported well. Column-oriented database using Table as the data
+model, but does not support table association. Columnoriented
+database has the following characteristics: 1) data is stored by column, that is data stored separately
+for each column; 2) each column of data is the index of
+database; 3) only access the columns involving the
+queries result to reduce the I/O of system; 4)
+concurrent process queries, that is, each column treat
+by one process; 5) there have the same type of data,
+similar characteristics and good compression ratio.
+Overall, the advantage of this data model is more
+suitable application on aggregation and data warehouse. Document database and Key-value is very similar in
+structure, but the Value of document database is
+semantic, and is stored in JSON or XML format. In
+addition, the document databases can generally a
+Secondary Index to value to facilitate the upper
+application, but Key-value database cannot support this. In 2000, Professor Eric Brewer put forward the
+famous CAP theorem. That is, Consistency,
+Availability, tolerance of network Partition. CAP
+theorem's core idea is a distributed system cannot meet
+the three district needs simultaneously, but can only
+meet two. Redis[4] is a very new project, the following is its
+characteristics: 1) Redis is the a Key-value memory
+database: when Redis run, data were entire load into
+memory, so all the operations were run in memory,
+then periodically save the data asynchronously to the
+hard disk. The characteristics of pure memory
+operation makes it very good performance, it can
+handle more than 100,000 read or write operation per
+second; 2) Redis support List and Set and various
+related operations; 3) The maximum of value limit to
+1GB; 4) the main drawback is that capacity of the
+database is limited by physical memory, so Redis
+cannot be used as big data storage, and scalability is
+poor.
+Therefore, Redis is suitable for providing highperformance
+computing to small amount of data. TC and TT were developed by Mikio Hirabayashi in
+Japan mainly for Japan's largest SNS site mixi.jp, it has
+been a very mature project yet. TC is a highperformance
+storage engine, while the TT provide
+multi-threaded high-concurrency servers, it can handle
+4-5 million times read and write operations per second. Column-oriented database  Cassandra Hypertable
+performance
+read and write concurrent, but rather to
+ensure that big data storage and good query
+performance. Typical document database are
+MongoDB, CouchDB. MongoDB[7] is a database between relational
+databases and non-relational database, its features are:
+I) it is non-relational database, which features the
+richest and most like the relational database; 2) support
+complex data types: MongoDB support bjson data
+structures to store complex data types; 3) powerful
+query language: it allows most of functions like query
+in single-table of relational databases, and also support
+index. 4) High-speed access to mass data: when the
+data exceeds 50GB, MongoDB access speed is 10
+times than MySQL. Because of these characteristics of
+MongoDB, many projects with increasing data are
+considering using MongoDB instead of relational Apache CouchDB[8] is a flexible, fault-tolerant
+database, which supports data formats such as ISON
+and AtomPub, it provides REST-style API. To ensure
+data consistency, CouchDB comply with ACID
+properties. In addition, CouchDB provides a P2P-based
+distributed database solution that supports bidirectional
+replication. However, it also has some
+limitations, such as only providing an interface based
+on HTTP REST, concurrent read and write
+performance is not ideal and so on. Database synchronization is a complex process in
+heterogeneous database environment. Maintaining the uniformity
+of data and its structure is a fundamental problem of data synchronization.
+In this paper we present a methodology to synchronize
+data and structure in heterogeneous database envrionment.
+We capture all DDL and DML SQL query from source database
+and pass this SQL query to target database. A process runs continuously
+in the back end to read SQL query and passes the SQL
+query to target system through HTTP. Another process processes
+the SQL query in the target system. Some errors may happen
+in target database for data type mismatch or SQL query function
+mismatch or unavailability. To avoid these errors, we have
+used two lookup tables and adapt the SQL query. Then we execute
+the changed query in the target database. Our experimental
+results evidence the effectiveness of the proposed method.
+Index Terms—DDL and DML, heterogeneous database, SQL query capture, database synchronization
+Data backup is getting a lot of attention as the importance of
+data is increasing day by day in the business arena as well as
+in different educational and government organizations. If any
+database failure happens, it needs very quick recovery of data
+in order to maintain productivity as well as data integrity. Different
+databases are fit for different applications. Data needs
+to be synchronized in heterogeneous environment to get data
+and structure from different databases by the different applications
+so that end users at all sites can experience improved
+availability of uniform data and structure [1]. If a local copy
+of data is unavailable, users can still access the remote copy of
+data from target database. For data mining, data analysis, application
+support [2], we need up-to-date data and structure of
+live source database. So, we can achieve all these requirements
+by real time synchronization [3]. To achieve synchronization,
+a core issue that should be solved is maintaining uniformity
+of data and its structure. Many commercial applications [4],
+[5], [6], [7] and methodologies are being used to accomplish
+this task.
+In this paper, we explore the problem of preserving consistency
+of data in database and its structure in heterogeneous
+database environment. To solve this problem, we are passing
+SQL (Standard Query Language) [8] query to the target
+database through HTTP protocol. We take advantage of the
+fact that RDBMS compliant data supports SQL query for all
+database platforms having slight differences in syntax. Another
+reason behind our choice is that full object replacement requires huge time and bandwidth to process the data compared
+to SQL query transfer method. Unidirectional synchronization
+can be done by detecting the SQL query in source
+database and passing it to the remote target database through
+HTTP protocol. The main advantage of this method is that it
+does not process all data of source database. So this method
+does not depend on size of database. In XML based synchronization [9], the authors have described
+about data synchronization in heterogeneous environment
+over HTTP and JMS but they do not mention how the
+method can be used for maintaining structure of database.
+WisdomForce DatabaseSync [6] is very costly and it can
+only do data synchronization. It can not detect any change in
+schema of source database. For example, if any new table is
+created in source database, WisdomForce DatabaseSync can
+not automatically create this table in corresponding schema of
+the target database. Oracle GoldenGate [5] is more expensive
+than WisdomForce DatabaseSync. Also for customization, it
+needs permission from Oracle Corporation. This makes it more
+expensive. Oracle Streaming [10] is slower. It increases the
+load on source database as it works on the basis of database
+triggering.
+Oracle Active Data Guard [11] can not be implemented
+in heterogeneous system because it only supports Oracle to
+Oracle database. Another problem is that it is used only for
+database replication but not real time data synchronization.
+Object-relational mapping solution can be helpful if the modified
+data is in our hand. So, we need to capture modified data
+from source database to use this solution. As we are working
+with heterogeneous database, most of the databases do
+not provide modified data capture facility. We can have two
+options here. Either we can extract the modified records and
+process them using object-relational mapping. Problem of this
+approach has been pointed out above. Or we can transfer the
+whole database in case of any changes. This is absolutely impractical.
