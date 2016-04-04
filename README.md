@@ -13,10 +13,6 @@ This repository contains everything required for the project of Information Retr
 5. File -> REARME.md
   - A readme file to describe this repo.
 
-##### Source Location:
-This source is hosted on Github:
-  - https://github.com/vishwaraj00/InformationRetrievalDblp
-
 ##### Want to discuss?
   - Contributor list: Bhatt Dhiraj; Ngo Thanh Tung; Pattamasattayasonthi Napas; Rakpong Kaewpuang; Vishwaraj Anand.
 
